@@ -4,7 +4,7 @@ Model checkpoints for RibAssist 3D are **not** automatically licensed under this
 Apache-2.0 code license. They are trained on third-party medical datasets and must comply
 with **all** dataset licenses that contributed to training.
 
-## RibFrac (CC BY-NC 4.0) — binding for checkpoints
+## RibFrac (CC BY-NC 4.0): binding for checkpoints
 
 The [MICCAI 2020 RibFrac challenge](https://ribfrac.grand-challenge.org/) dataset (Zenodo:
 training, validation, and test subsets) is licensed under

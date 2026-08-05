@@ -1,8 +1,8 @@
-# RibAssist 3D — Reproducibility
+# RibAssist 3D: Reproducibility
 
 This document is the end-to-end path from **licensed third-party data** to the **sealed headline result**
 and the **Streamlit demo**. The repository ships all scripts, published case-id splits, and headline sealed
-JSONs. It does **not** ship RibFrac/RibSeg volumes, derived `.npz` tensors, or model checkpoints — obtain
+JSONs. It does **not** ship RibFrac/RibSeg volumes, derived `.npz` tensors, or model checkpoints. Obtain
 those under their licenses ([DATA_SETUP.md](DATA_SETUP.md)) and run the steps below.
 
 Every stage verifies dataset, checkpoint, and protocol hashes before producing numbers; a mismatch aborts
@@ -10,7 +10,7 @@ the run (fail-closed).
 
 All commands run from the repository root with the project virtualenv active.
 
-## 0. What is published vs local
+## 1. What is published vs local
 
 | In git | You prepare locally |
 |---|---|
@@ -35,16 +35,16 @@ python scripts/validate_local_artifacts.py --demo --strict
 python scripts/validate_local_artifacts.py --all --strict
 ```
 
-## 1. Environment
+## 2. Environment
 
 - Python **3.10+** (see `pyproject.toml`), packages in `requirements.txt` (NumPy, SciPy, PyTorch, nibabel,
   scikit-learn, matplotlib). Demo: `requirements-demo.txt` (Streamlit, Plotly).
 - Detector training uses Apple MPS or CUDA; evaluation and figure generation are CPU-only.
 - Data layout after [DATA_SETUP.md](DATA_SETUP.md):
-  - `data/ribfrac_train/`, `data/ribfrac/` — RibFrac CT + labels
-  - `data/ribseg/ribseg_v2/seg/`, `data/ribseg/ribseg_v2/cl/` — RibSeg v2
+  - `data/ribfrac_train/`, `data/ribfrac/`: RibFrac CT + labels
+  - `data/ribseg/ribseg_v2/seg/`, `data/ribseg/ribseg_v2/cl/`: RibSeg v2
 
-## 2. Pinned artifact inventory
+## 3. Pinned artifact inventory
 
 These are the **expected sha256 digests** once you complete the pipeline. They are also listed in
 `split_manifest.json` for automated checking.
@@ -62,13 +62,13 @@ These are the **expected sha256 digests** once you complete the pipeline. They a
 
 **Frozen policies (selected on development, applied verbatim to sealed):**
 
-- frozen detector — gate 6, cost `min_conf`, mutual_best `false`, u `0.0` (abstain by construction)
-- L2 detector — gate 30, cost `geomean_conf`, mutual_best `false`, u `0.41666666666666663`
+- frozen detector: gate 6, cost `min_conf`, mutual_best `false`, u `0.0` (abstain by construction)
+- L2 detector: gate 30, cost `geomean_conf`, mutual_best `false`, u `0.41666666666666663`
 - Extraction: AP `nms 5 / floor 0.05`; lateral frozen `nms 3 / floor 0.06`; L2 `nms 3 / floor 0.10`
 
-## 3. Build the detector dataset
+## 4. Build the detector dataset
 
-Uses the **published** `frozen_split.json` (do not open the sealed test until Stage 9).
+Uses the **published** `frozen_split.json` (do not open the sealed test until Section 10).
 
 ```bash
 python scripts/make_det_data.py \
@@ -81,7 +81,7 @@ python scripts/make_det_data.py \
 Produces `det_dev.npz`, `det_test_inputs.npz`, `det_test_gt.npz`, and `det_manifest.json`. Training code
 loads **only** `det_dev.npz`; sealed sources stay separate until assembly.
 
-## 4. Train the champion detector (frozen head)
+## 5. Train the champion detector (frozen head)
 
 From-scratch dual-view U-Net, base channels 32, 80 epochs. Checkpoint selection uses the dev-internal val
 slice only.
@@ -117,7 +117,7 @@ python scripts/freeze_detector.py \
 
 The gated run (`detector_dev_scratch_c32_both_gated`) is the **frozen head** for correspondence evaluation.
 
-## 5. Addressing model (demo + rib-level output)
+## 6. Addressing model (demo + rib-level output)
 
 Build detector-frame crops and train the addressing network:
 
@@ -140,7 +140,7 @@ python scripts/train_address_deploy.py \
     --out outputs/addressing_model_ap_nopos
 ```
 
-## 6. Rib atlas (3D demo context)
+## 7. Rib atlas (3D demo context)
 
 Uses the published `geometry_split.json` for atlas build / val holdout:
 
@@ -156,7 +156,7 @@ python scripts/build_rib_atlas.py \
 Per-case reconstruction for the demo uses `scripts/reconstruct_3d.py` (called from `run_ribassist.py` /
 `demo_app/`).
 
-## 7. Correspondence diagnostics (L0 → L1)
+## 8. Correspondence diagnostics (L0 → L1)
 
 Optional but documented context for why lateral extraction was recalibrated:
 
@@ -180,7 +180,7 @@ bash scripts/run_L1_correspondence_sweep.sh
 
 Outputs land in `outputs/L1_sweep/` (remove that directory to re-run cleanly).
 
-## 8. Lateral retrain (L2) + floor sweep
+## 9. Lateral retrain (L2) + floor sweep
 
 ```bash
 python scripts/train_lateral_L2.py \
@@ -202,7 +202,7 @@ Optional L2 eval at the standing policy:
 bash scripts/run_L2_eval.sh
 ```
 
-## 9. Sealed confirmatory evaluation
+## 10. Sealed confirmatory evaluation
 
 **Stage 1** assembles the sealed cohort and freezes D1 deployment configs on development (no sealed metrics):
 
@@ -229,7 +229,7 @@ python scripts/build_sealed_det_npz.py \
     --out outputs/det_out_v2/det_test.npz
 ```
 
-## 10. Figures and demo
+## 11. Figures and demo
 
 ```bash
 python scripts/make_main_results_figure.py \
@@ -257,7 +257,7 @@ Smoke tests (no UI):
 bash scripts/smoke_demo.sh
 ```
 
-## 11. Optional: learned pair-scorer (2×2 attribution)
+## 12. Optional: learned pair-scorer (2×2 attribution)
 
 Run only on the winning L1 policy to reproduce the attribution figure:
 
@@ -267,15 +267,15 @@ bash scripts/run_L1_D2_confirm.sh
 
 This trains/evaluates `eval_correspondence_D2a_crops.py` + `eval_correspondence_D2b_learned.py`.
 
-## 12. Provenance model
+## 13. Provenance model
 
 `sha256(det_dev.npz)` is embedded in every downstream artifact. The sealed path adds an external anchor:
 assembled `det_test.npz` is verified against manifest-recorded source hashes before any sealed metric is
 produced. See `scripts/make_integration_manifest.py` for a full integration manifest after freezing.
 
-## 13. Legacy FROC sealed path
+## 14. Legacy FROC sealed path
 
 An earlier detector-only sealed evaluator exists (`scripts/eval_sealed_test.py`) for the
 `train_detector → evaluate_detector → freeze_detector` FROC pipeline. The **reported headline result** uses
-the correspondence path (Sections 7–9) instead. Keep `eval_sealed_test.py` for completeness if you need the
+the correspondence path (Sections 8-10) instead. Keep `eval_sealed_test.py` for completeness if you need the
 original FROC confirmatory pass.
