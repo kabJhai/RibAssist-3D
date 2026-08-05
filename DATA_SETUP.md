@@ -66,6 +66,10 @@ gdown --id 1ZZGGrhd0y1fLyOZGo_Y-wlVUP4lkHVgm -O ribseg_v2.zip
 unzip ribseg_v2.zip -d data/ribseg/
 ```
 
+On gdown 5.0+ the `--id` flag is removed; use the file id directly (`gdown 1ZZGGrhd0y1fLyOZGo_Y-wlVUP4lkHVgm -O
+ribseg_v2.zip`) or `gdown --fuzzy <share-url>`. If Google Drive rate-limits the download, open the share link in a
+browser instead.
+
 Expected paths for this codebase:
 
 ```

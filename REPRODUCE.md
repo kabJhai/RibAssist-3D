@@ -10,6 +10,21 @@ the run (fail-closed).
 
 All commands run from the repository root with the project virtualenv active.
 
+## 0. Quickest check (no data download)
+
+The headline sealed-evaluation JSONs are committed under `outputs/sealed/`, so a fresh clone can regenerate the
+main-results figure and confirm the reported numbers without any dataset, checkpoint, or GPU:
+
+```bash
+pip install -r requirements.txt
+python scripts/validate_local_artifacts.py            # verifies the published split hashes
+python scripts/make_main_results_figure.py \
+    --sealed-dir outputs/sealed --out figures/main_results.png
+```
+
+The regenerated figure reports frozen `recall@10 0.0%` (0/601) versus L2 `recall@10 2.50%` (15/601) at 0.436
+false-3D/case, case-bootstrap 95% CI 0.69%-4.48%. Everything below reproduces those JSONs from raw data.
+
 ## 1. What is published vs local
 
 | In git | You prepare locally |
@@ -46,8 +61,11 @@ python scripts/validate_local_artifacts.py --all --strict
 
 ## 3. Pinned artifact inventory
 
-These are the **expected sha256 digests** once you complete the pipeline. They are also listed in
-`split_manifest.json` for automated checking.
+These are the **expected sha256 digests** once you complete the pipeline. The demo and sealed-evaluation
+artifacts (assembled `det_test.npz`, both detector checkpoints, the addressing model, and the sealed policy /
+pairs files) are pinned in `split_manifest.json` and checked by `validate_local_artifacts.py`. The `det_dev.npz`
+and the two sealed source tensors (`det_test_inputs.npz`, `det_test_gt.npz`) are instead verified through
+`det_manifest.json`, which `make_det_data.py` writes and every downstream stage re-checks (fail-closed).
 
 | artifact | sha256 (prefix … suffix) |
 |---|---|
@@ -124,7 +142,7 @@ Build detector-frame crops and train the addressing network:
 ```bash
 python scripts/make_address_data_detframe.py \
     --dev outputs/det_out_v2/det_dev.npz \
-    --ribfrac-dir data/ribfrac_train data/ribfrac \
+    --image-dirs data/ribfrac_train data/ribfrac \
     --seg-dir data/ribseg/ribseg_v2/seg \
     --cl-dir data/ribseg/ribseg_v2/cl \
     --crop 96 --half 24 \
@@ -203,6 +221,11 @@ bash scripts/run_L2_eval.sh
 ```
 
 ## 10. Sealed confirmatory evaluation
+
+**Prerequisites.** Stage 1 reads the two development candidate graphs produced earlier:
+`outputs/L1_sweep/latN3_f060_D0_pairs.npz` (from the L1 sweep, Section 8) and
+`outputs/L2_sweep/L2_latN3_f010_D0_pairs.npz` (from the L2 floor sweep, Section 9). Run Sections 5, 8, and 9
+first, or Stage 1 will abort on the missing files.
 
 **Stage 1** assembles the sealed cohort and freezes D1 deployment configs on development (no sealed metrics):
 
