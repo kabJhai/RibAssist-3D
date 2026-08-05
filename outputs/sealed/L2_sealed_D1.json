@@ -1,0 +1,614 @@
+{
+  "stage": "SEALED fixed-policy 3D reconstruction (frozen config; NO reselection)",
+  "diagnostic_status": "SEALED confirmatory pass \u2014 frozen extraction policy + frozen D1 config selected on dev.",
+  "mode": "apply-policy-sealed",
+  "expected_data_sha256": "75c62ab5286dedbfd6e6d994f8b1ede6e969a9e505aaded43379f672fdb0514d",
+  "detector_run": "outputs/detector_L2_lateral_hnm",
+  "data_sha256": "75c62ab5286dedbfd6e6d994f8b1ede6e969a9e505aaded43379f672fdb0514d",
+  "pairs_npz": "outputs/sealed/L2_sealed_D0_pairs.npz",
+  "provenance_level": "detector_checkpoint_sha256",
+  "frozen_policy": {
+    "gate": 30.0,
+    "cost": "geomean_conf",
+    "mutual_best": false,
+    "u": 0.41666666666666663
+  },
+  "val_cases": 55,
+  "gt_fractures": 601,
+  "gt_negative_cases": 0,
+  "correct_within_mm": 10.0,
+  "match_tol_mm": 15.0,
+  "operational_headline": {
+    "cohort_gt": 601,
+    "cohort_cases": 55,
+    "cohort_neg_cases": 0,
+    "correct5": 10,
+    "correct10": 15,
+    "correct15": 18,
+    "recall5": 0.0166,
+    "recall10": 0.025,
+    "recall15": 0.03,
+    "additional_matches_at15_vs10": 3,
+    "fraction_gt_missed_within10": 0.975,
+    "false_3d_points_at_10mm": 24,
+    "false_3d_per_case_at_10mm": 0.436,
+    "false_3d_points_at_15mm": 21,
+    "false_3d_per_case_at_15mm": 0.382,
+    "neg_case_false_points_at10_total": 0,
+    "neg_case_false_points_at10_raw": {},
+    "median_mm_matched_within10": 1.49,
+    "p90_mm_matched_within10": 7.37,
+    "rib_exact_matched_within10": 0.9333,
+    "rib_within1_matched_within10": 1.0,
+    "along_rib_mm_matched_within10": 17.83,
+    "n_accepted_3d": 39,
+    "n_matched_within10": 15,
+    "anatomical_note": "independent Hungarian matching per tolerance; anatomical from the 10mm-ASSIGNED GT"
+  },
+  "bootstrap95_case_level": {
+    "recall5": [
+      0.0037,
+      0.0317
+    ],
+    "recall10": [
+      0.0069,
+      0.0448
+    ],
+    "recall15": [
+      0.0093,
+      0.0532
+    ],
+    "false_3d_per_case_at_10mm": [
+      0.1818,
+      0.7273
+    ]
+  },
+  "correspondence_diagnostic": {
+    "n_correct_iid_credited": 15,
+    "correct_iid_within10": 14,
+    "cross_instance_accepted": 7,
+    "one_sided_accepted": 7,
+    "fully_false_accepted": 2,
+    "ambiguous_identity_accepted": 2,
+    "rib_exact_correct_iid_within10": 0.9286
+  },
+  "candidate_ceiling_at_policy_gate": {
+    "within5": 0.4293,
+    "within10": 0.584,
+    "within15": 0.6622
+  },
+  "gate_ceilings": {
+    "6.0": {
+      "within5": 0.2895,
+      "within10": 0.3927,
+      "within15": 0.4925
+    },
+    "8.0": {
+      "within5": 0.3111,
+      "within10": 0.426,
+      "within15": 0.5175
+    },
+    "10.0": {
+      "within5": 0.3428,
+      "within10": 0.4642,
+      "within15": 0.5491
+    },
+    "12.0": {
+      "within5": 0.3561,
+      "within10": 0.4875,
+      "within15": 0.574
+    },
+    "16.0": {
+      "within5": 0.3777,
+      "within10": 0.5092,
+      "within15": 0.604
+    },
+    "20.0": {
+      "within5": 0.3943,
+      "within10": 0.5341,
+      "within15": 0.6306
+    },
+    "30.0": {
+      "within5": 0.4293,
+      "within10": 0.584,
+      "within15": 0.6622
+    }
+  },
+  "per_case": {
+    "RibFrac3": {
+      "gt": 12,
+      "n_pred": 0,
+      "matched5": 0,
+      "matched10": 0,
+      "matched15": 0,
+      "false10": 0,
+      "is_negative": false
+    },
+    "RibFrac6": {
+      "gt": 15,
+      "n_pred": 0,
+      "matched5": 0,
+      "matched10": 0,
+      "matched15": 0,
+      "false10": 0,
+      "is_negative": false
+    },
+    "RibFrac7": {
+      "gt": 6,
+      "n_pred": 0,
+      "matched5": 0,
+      "matched10": 0,
+      "matched15": 0,
+      "false10": 0,
+      "is_negative": false
+    },
+    "RibFrac20": {
+      "gt": 3,
+      "n_pred": 0,
+      "matched5": 0,
+      "matched10": 0,
+      "matched15": 0,
+      "false10": 0,
+      "is_negative": false
+    },
+    "RibFrac28": {
+      "gt": 9,
+      "n_pred": 0,
+      "matched5": 0,
+      "matched10": 0,
+      "matched15": 0,
+      "false10": 0,
+      "is_negative": false
+    },
+    "RibFrac29": {
+      "gt": 4,
+      "n_pred": 0,
+      "matched5": 0,
+      "matched10": 0,
+      "matched15": 0,
+      "false10": 0,
+      "is_negative": false
+    },
+    "RibFrac45": {
+      "gt": 6,
+      "n_pred": 0,
+      "matched5": 0,
+      "matched10": 0,
+      "matched15": 0,
+      "false10": 0,
+      "is_negative": false
+    },
+    "RibFrac50": {
+      "gt": 5,
+      "n_pred": 0,
+      "matched5": 0,
+      "matched10": 0,
+      "matched15": 0,
+      "false10": 0,
+      "is_negative": false
+    },
+    "RibFrac51": {
+      "gt": 6,
+      "n_pred": 0,
+      "matched5": 0,
+      "matched10": 0,
+      "matched15": 0,
+      "false10": 0,
+      "is_negative": false
+    },
+    "RibFrac54": {
+      "gt": 24,
+      "n_pred": 2,
+      "matched5": 0,
+      "matched10": 0,
+      "matched15": 0,
+      "false10": 2,
+      "is_negative": false
+    },
+    "RibFrac58": {
+      "gt": 13,
+      "n_pred": 0,
+      "matched5": 0,
+      "matched10": 0,
+      "matched15": 0,
+      "false10": 0,
+      "is_negative": false
+    },
+    "RibFrac64": {
+      "gt": 6,
+      "n_pred": 0,
+      "matched5": 0,
+      "matched10": 0,
+      "matched15": 0,
+      "false10": 0,
+      "is_negative": false
+    },
+    "RibFrac66": {
+      "gt": 15,
+      "n_pred": 0,
+      "matched5": 0,
+      "matched10": 0,
+      "matched15": 0,
+      "false10": 0,
+      "is_negative": false
+    },
+    "RibFrac72": {
+      "gt": 12,
+      "n_pred": 0,
+      "matched5": 0,
+      "matched10": 0,
+      "matched15": 0,
+      "false10": 0,
+      "is_negative": false
+    },
+    "RibFrac86": {
+      "gt": 5,
+      "n_pred": 0,
+      "matched5": 0,
+      "matched10": 0,
+      "matched15": 0,
+      "false10": 0,
+      "is_negative": false
+    },
+    "RibFrac87": {
+      "gt": 9,
+      "n_pred": 0,
+      "matched5": 0,
+      "matched10": 0,
+      "matched15": 0,
+      "false10": 0,
+      "is_negative": false
+    },
+    "RibFrac89": {
+      "gt": 8,
+      "n_pred": 0,
+      "matched5": 0,
+      "matched10": 0,
+      "matched15": 0,
+      "false10": 0,
+      "is_negative": false
+    },
+    "RibFrac102": {
+      "gt": 17,
+      "n_pred": 0,
+      "matched5": 0,
+      "matched10": 0,
+      "matched15": 0,
+      "false10": 0,
+      "is_negative": false
+    },
+    "RibFrac103": {
+      "gt": 11,
+      "n_pred": 0,
+      "matched5": 0,
+      "matched10": 0,
+      "matched15": 0,
+      "false10": 0,
+      "is_negative": false
+    },
+    "RibFrac118": {
+      "gt": 5,
+      "n_pred": 0,
+      "matched5": 0,
+      "matched10": 0,
+      "matched15": 0,
+      "false10": 0,
+      "is_negative": false
+    },
+    "RibFrac119": {
+      "gt": 21,
+      "n_pred": 9,
+      "matched5": 2,
+      "matched10": 3,
+      "matched15": 4,
+      "false10": 6,
+      "is_negative": false
+    },
+    "RibFrac126": {
+      "gt": 17,
+      "n_pred": 0,
+      "matched5": 0,
+      "matched10": 0,
+      "matched15": 0,
+      "false10": 0,
+      "is_negative": false
+    },
+    "RibFrac133": {
+      "gt": 17,
+      "n_pred": 0,
+      "matched5": 0,
+      "matched10": 0,
+      "matched15": 0,
+      "false10": 0,
+      "is_negative": false
+    },
+    "RibFrac134": {
+      "gt": 10,
+      "n_pred": 2,
+      "matched5": 0,
+      "matched10": 0,
+      "matched15": 0,
+      "false10": 2,
+      "is_negative": false
+    },
+    "RibFrac135": {
+      "gt": 11,
+      "n_pred": 5,
+      "matched5": 1,
+      "matched10": 3,
+      "matched15": 3,
+      "false10": 2,
+      "is_negative": false
+    },
+    "RibFrac139": {
+      "gt": 17,
+      "n_pred": 2,
+      "matched5": 1,
+      "matched10": 2,
+      "matched15": 2,
+      "false10": 0,
+      "is_negative": false
+    },
+    "RibFrac142": {
+      "gt": 15,
+      "n_pred": 3,
+      "matched5": 1,
+      "matched10": 2,
+      "matched15": 2,
+      "false10": 1,
+      "is_negative": false
+    },
+    "RibFrac143": {
+      "gt": 2,
+      "n_pred": 0,
+      "matched5": 0,
+      "matched10": 0,
+      "matched15": 0,
+      "false10": 0,
+      "is_negative": false
+    },
+    "RibFrac145": {
+      "gt": 9,
+      "n_pred": 0,
+      "matched5": 0,
+      "matched10": 0,
+      "matched15": 0,
+      "false10": 0,
+      "is_negative": false
+    },
+    "RibFrac149": {
+      "gt": 10,
+      "n_pred": 0,
+      "matched5": 0,
+      "matched10": 0,
+      "matched15": 0,
+      "false10": 0,
+      "is_negative": false
+    },
+    "RibFrac156": {
+      "gt": 2,
+      "n_pred": 1,
+      "matched5": 0,
+      "matched10": 0,
+      "matched15": 0,
+      "false10": 1,
+      "is_negative": false
+    },
+    "RibFrac171": {
+      "gt": 9,
+      "n_pred": 0,
+      "matched5": 0,
+      "matched10": 0,
+      "matched15": 0,
+      "false10": 0,
+      "is_negative": false
+    },
+    "RibFrac176": {
+      "gt": 16,
+      "n_pred": 7,
+      "matched5": 4,
+      "matched10": 4,
+      "matched15": 4,
+      "false10": 3,
+      "is_negative": false
+    },
+    "RibFrac181": {
+      "gt": 36,
+      "n_pred": 0,
+      "matched5": 0,
+      "matched10": 0,
+      "matched15": 0,
+      "false10": 0,
+      "is_negative": false
+    },
+    "RibFrac182": {
+      "gt": 11,
+      "n_pred": 0,
+      "matched5": 0,
+      "matched10": 0,
+      "matched15": 0,
+      "false10": 0,
+      "is_negative": false
+    },
+    "RibFrac186": {
+      "gt": 4,
+      "n_pred": 0,
+      "matched5": 0,
+      "matched10": 0,
+      "matched15": 0,
+      "false10": 0,
+      "is_negative": false
+    },
+    "RibFrac189": {
+      "gt": 6,
+      "n_pred": 0,
+      "matched5": 0,
+      "matched10": 0,
+      "matched15": 0,
+      "false10": 0,
+      "is_negative": false
+    },
+    "RibFrac201": {
+      "gt": 18,
+      "n_pred": 0,
+      "matched5": 0,
+      "matched10": 0,
+      "matched15": 0,
+      "false10": 0,
+      "is_negative": false
+    },
+    "RibFrac202": {
+      "gt": 9,
+      "n_pred": 0,
+      "matched5": 0,
+      "matched10": 0,
+      "matched15": 0,
+      "false10": 0,
+      "is_negative": false
+    },
+    "RibFrac205": {
+      "gt": 3,
+      "n_pred": 0,
+      "matched5": 0,
+      "matched10": 0,
+      "matched15": 0,
+      "false10": 0,
+      "is_negative": false
+    },
+    "RibFrac211": {
+      "gt": 12,
+      "n_pred": 0,
+      "matched5": 0,
+      "matched10": 0,
+      "matched15": 0,
+      "false10": 0,
+      "is_negative": false
+    },
+    "RibFrac220": {
+      "gt": 11,
+      "n_pred": 0,
+      "matched5": 0,
+      "matched10": 0,
+      "matched15": 0,
+      "false10": 0,
+      "is_negative": false
+    },
+    "RibFrac222": {
+      "gt": 10,
+      "n_pred": 1,
+      "matched5": 0,
+      "matched10": 0,
+      "matched15": 0,
+      "false10": 1,
+      "is_negative": false
+    },
+    "RibFrac228": {
+      "gt": 9,
+      "n_pred": 0,
+      "matched5": 0,
+      "matched10": 0,
+      "matched15": 0,
+      "false10": 0,
+      "is_negative": false
+    },
+    "RibFrac231": {
+      "gt": 2,
+      "n_pred": 0,
+      "matched5": 0,
+      "matched10": 0,
+      "matched15": 0,
+      "false10": 0,
+      "is_negative": false
+    },
+    "RibFrac232": {
+      "gt": 8,
+      "n_pred": 0,
+      "matched5": 0,
+      "matched10": 0,
+      "matched15": 0,
+      "false10": 0,
+      "is_negative": false
+    },
+    "RibFrac251": {
+      "gt": 6,
+      "n_pred": 3,
+      "matched5": 1,
+      "matched10": 1,
+      "matched15": 3,
+      "false10": 2,
+      "is_negative": false
+    },
+    "RibFrac255": {
+      "gt": 9,
+      "n_pred": 0,
+      "matched5": 0,
+      "matched10": 0,
+      "matched15": 0,
+      "false10": 0,
+      "is_negative": false
+    },
+    "RibFrac261": {
+      "gt": 9,
+      "n_pred": 0,
+      "matched5": 0,
+      "matched10": 0,
+      "matched15": 0,
+      "false10": 0,
+      "is_negative": false
+    },
+    "RibFrac263": {
+      "gt": 9,
+      "n_pred": 0,
+      "matched5": 0,
+      "matched10": 0,
+      "matched15": 0,
+      "false10": 0,
+      "is_negative": false
+    },
+    "RibFrac278": {
+      "gt": 5,
+      "n_pred": 0,
+      "matched5": 0,
+      "matched10": 0,
+      "matched15": 0,
+      "false10": 0,
+      "is_negative": false
+    },
+    "RibFrac283": {
+      "gt": 25,
+      "n_pred": 2,
+      "matched5": 0,
+      "matched10": 0,
+      "matched15": 0,
+      "false10": 2,
+      "is_negative": false
+    },
+    "RibFrac287": {
+      "gt": 26,
+      "n_pred": 1,
+      "matched5": 0,
+      "matched10": 0,
+      "matched15": 0,
+      "false10": 1,
+      "is_negative": false
+    },
+    "RibFrac295": {
+      "gt": 18,
+      "n_pred": 1,
+      "matched5": 0,
+      "matched10": 0,
+      "matched15": 0,
+      "false10": 1,
+      "is_negative": false
+    },
+    "RibFrac296": {
+      "gt": 8,
+      "n_pred": 0,
+      "matched5": 0,
+      "matched10": 0,
+      "matched15": 0,
+      "false10": 0,
+      "is_negative": false
+    }
+  }
+}

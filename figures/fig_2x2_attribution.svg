@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 600" font-family="Helvetica, Arial, sans-serif">
+  <rect width="760" height="600" fill="#ffffff"/>
+  <text x="380" y="40" text-anchor="middle" font-size="21" font-weight="700" fill="#0b0b0b">The detector is the lever, not the correspondence method</text>
+  <text x="380" y="66" text-anchor="middle" font-size="13" fill="#52514e">recall@10 at ≤1 false-3D/case (development out-of-fold; each head at its calibrated best policy)</text>
+
+  <!-- column headers -->
+  <text x="335" y="118" text-anchor="middle" font-size="15" font-weight="700" fill="#0b0b0b">D1 · deterministic</text>
+  <text x="335" y="136" text-anchor="middle" font-size="11.5" fill="#52514e">SI + detector-confidence</text>
+  <text x="575" y="118" text-anchor="middle" font-size="15" font-weight="700" fill="#0b0b0b">D2 · learned</text>
+  <text x="575" y="136" text-anchor="middle" font-size="11.5" fill="#52514e">two-tower appearance</text>
+
+  <!-- row headers -->
+  <text x="150" y="212" text-anchor="middle" font-size="15" font-weight="700" fill="#2a78d6">frozen</text>
+  <text x="150" y="230" text-anchor="middle" font-size="11.5" fill="#52514e">detector</text>
+  <text x="150" y="367" text-anchor="middle" font-size="15" font-weight="700" fill="#eb6834">L2</text>
+  <text x="150" y="385" text-anchor="middle" font-size="11.5" fill="#52514e">retrained</text>
+
+  <!-- cells -->
+  <rect x="230" y="162" width="210" height="120" rx="8" fill="#f6f8fa" stroke="#e6e6e3" stroke-width="1.5"/>
+  <text x="335" y="212" text-anchor="middle" font-size="30" font-weight="700" fill="#8c959f">0.0%</text>
+  <text x="335" y="242" text-anchor="middle" font-size="12" fill="#52514e">0 / 492 · abstains</text>
+
+  <rect x="470" y="162" width="210" height="120" rx="8" fill="#f6f8fa" stroke="#e6e6e3" stroke-width="1.5"/>
+  <text x="575" y="212" text-anchor="middle" font-size="30" font-weight="700" fill="#8c959f">0.2%</text>
+  <text x="575" y="242" text-anchor="middle" font-size="12" fill="#52514e">1 / 492</text>
+
+  <rect x="230" y="307" width="210" height="120" rx="8" fill="#fdece3" stroke="#eb6834" stroke-width="2.5"/>
+  <text x="335" y="357" text-anchor="middle" font-size="34" font-weight="700" fill="#eb6834">2.44%</text>
+  <text x="335" y="387" text-anchor="middle" font-size="12" fill="#52514e">12 / 492 · commits</text>
+  <text x="335" y="406" text-anchor="middle" font-size="11" font-weight="700" fill="#eb6834">only operational cell</text>
+
+  <rect x="470" y="307" width="210" height="120" rx="8" fill="#f6f8fa" stroke="#e6e6e3" stroke-width="1.5"/>
+  <text x="575" y="357" text-anchor="middle" font-size="30" font-weight="700" fill="#8c959f">0.0%</text>
+  <text x="575" y="387" text-anchor="middle" font-size="12" fill="#52514e">0 / 492</text>
+
+  <!-- effect arrows + labels -->
+  <line x1="335" y1="285" x2="335" y2="304" stroke="#eb6834" stroke-width="2.5" marker-end="url(#arr)"/>
+  <text x="348" y="299" font-size="11.5" font-weight="700" fill="#eb6834">detector effect</text>
+  <line x1="443" y1="367" x2="467" y2="367" stroke="#8c959f" stroke-width="2.5" marker-end="url(#arrg)"/>
+  <text x="455" y="352" text-anchor="middle" font-size="11" font-weight="700" fill="#8c959f">corresp. method</text>
+
+  <defs>
+    <marker id="arr" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#eb6834"/></marker>
+    <marker id="arrg" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#8c959f"/></marker>
+  </defs>
+
+  <!-- summary (one style per line — robust across renderers) -->
+  <line x1="80" y1="470" x2="680" y2="470" stroke="#e6e6e3" stroke-width="1"/>
+  <text x="380" y="500" text-anchor="middle" font-size="13.5" font-weight="700" fill="#eb6834">Detector effect (frozen→L2, D1): 0.0% → 2.44% — the only cell off zero.</text>
+  <text x="380" y="524" text-anchor="middle" font-size="13.5" font-weight="700" fill="#8c959f">Correspondence method (D1→D2, L2): 2.44% → 0.0%.</text>
+  <text x="380" y="546" text-anchor="middle" font-size="13" fill="#52514e">Learned appearance does not beat detector-confidence at ≤1 false/case (AUROC 0.57→0.66→0.71, still no commit).</text>
+  <text x="380" y="578" text-anchor="middle" font-size="11.5" fill="#8c959f">Sealed confirmation: L2·D1 = 2.50% (15/601) at 0.436 false/case, case-bootstrap 95% CI [0.69%, 4.48%].</text>
+</svg>

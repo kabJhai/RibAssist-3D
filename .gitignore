@@ -1,0 +1,155 @@
+# RibAssist 3D public repo policy
+#
+# TRACK (intended for release):
+#   scripts/ (full retrain + sealed eval + demo; see "Legacy/internal scripts" below for exclusions)
+#   LICENSE, LICENSE-DOCS, MODEL_LICENSE.md, DISCLAIMER.md, README.md
+#   requirements.txt, requirements-demo.txt, pyproject.toml
+#   figures/ (paper SVGs, main_results.png, ribassist_demo.gif only)
+#   frozen_split.json, split_manifest.json
+#   outputs/sealed/*.json (headline sealed-eval results)
+#   scripts/ribassist_review_template.html
+#
+# IGNORE: licensed data, derived labels, checkpoints, generated outputs,
+# internal docs/decks, local env, and scratch artifacts.
+
+# --- Local / tooling ---
+.DS_Store
+._*
+Thumbs.db
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
+.cursor/
+*.code-workspace
+*.log
+*.tmp
+scratch/
+tmp/
+local/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+env/
+.conda/
+pip-wheel-metadata/
+.env
+.env.*
+!.env.example
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+dist/
+build/
+*.egg-info/
+.eggs/
+*.ipynb
+.ipynb_checkpoints/
+
+# Streamlit (track config.toml if you add one)
+.streamlit/*
+!.streamlit/config.toml
+
+# Node (scripts/generate_deck.js)
+node_modules/
+package-lock.json
+
+# ML experiment logs
+wandb/
+mlruns/
+
+# --- Licensed clinical data (never commit) ---
+data/
+
+# --- Derived labels and tables (from RibFrac/RibSeg; regenerate locally) ---
+*.csv
+/labels_val.csv
+/labels*.csv
+/address_dataset.npz
+
+# --- Large binaries, checkpoints, and tensors ---
+*.nii
+*.nii.gz
+*.npz
+*.pt
+*.pth
+*.ckpt
+*.onnx
+*.zip
+*.tar
+*.tar.gz
+*.7z
+/ribseg_v2.zip
+
+# --- Root JSON: only split manifests are public ---
+/*.json
+!/frozen_split.json
+!/geometry_split.json
+!/split_manifest.json
+
+# --- Generated HTML (keep review template source) ---
+*.html
+!scripts/ribassist_review_template.html
+
+# --- Generated images (allowlist paper figures only) ---
+*.png
+*.gif
+*.jpg
+*.jpeg
+*.webp
+!figures/
+figures/*
+!figures/fig_*.svg
+!figures/main_results.png
+!figures/ribassist_demo.gif
+
+# --- Internal documentation (not ready for public release) ---
+*.md
+!README.md
+!MODEL_LICENSE.md
+!DISCLAIMER.md
+!DATA_SETUP.md
+!REPRODUCE.md
+/PROJECT_PLAN.md
+/RibAssist_report.md
+/RibAssist_findings_A_to_D2.md
+
+# --- Internal deliverables ---
+*.pptx
+/RibAssist_deck.pptx
+deck_assets/
+
+# --- Legacy / internal scripts (local only; not part of public release) ---
+# Pre-main-arc feasibility probes
+scripts/ribfrac_feasibility_audit.py
+scripts/build_probe.py
+scripts/make_drr.py
+# Superseded summary / pattern / atlas-geometry evaluators
+scripts/build_summary.py
+scripts/eval_pattern.py
+scripts/eval_geometry.py
+# One-off dev utilities and internal deck tooling
+scripts/reeval_detector.py
+scripts/overlay_predictions.py
+scripts/capture_demo_screenshots.py
+scripts/generate_deck.js
+
+# --- Maintainer / alternate demo tooling ---
+scripts/make_readme_demo_gif.py
+scripts/export_review_site.py
+scripts/ribassist_review_template.html
+
+# --- Generated outputs (ignore all; un-ignore sealed headline JSONs) ---
+outputs/*
+!outputs/sealed/
+outputs/sealed/*
+!outputs/sealed/*.json

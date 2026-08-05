@@ -1,0 +1,10 @@
+[project]
+name = "ribassist"
+version = "0.1.0"
+description = "RibAssist 3D: biplanar rib-fracture localization and clinician-review demo"
+requires-python = ">=3.10"
+readme = "README.md"
+license = "Apache-2.0"
+
+[tool.setuptools.packages.find]
+include = ["demo_app*"]

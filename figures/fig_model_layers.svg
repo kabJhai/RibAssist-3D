@@ -1,0 +1,149 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1220 900" font-family="Helvetica, Arial, sans-serif">
+<rect width="1220" height="900" fill="#ffffff"/>
+<defs><marker id="a" markerWidth="10" markerHeight="10" refX="7" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#8c959f"/></marker></defs>
+<text x="610.0" y="38" font-size="22" font-weight="700" fill="#0b0b0b" text-anchor="middle">RibAssist 3D &#8212; model architecture, layer by layer</text>
+<text x="40" y="80" font-size="15" font-weight="700" fill="#0b0b0b" text-anchor="start">1 &#183; Per-view detector U-Net  (base channels = 32; one independent copy per view)</text>
+<rect x="40" y="100" width="220" height="30" rx="8" fill="#eaf1fb" stroke="#2a78d6" stroke-width="1.6"/>
+<text x="150" y="120" font-size="11" font-weight="700" fill="#0b0b0b" text-anchor="middle">Input: AP or lateral projection &#183; 1 &#215; 256&#178;</text>
+<line x1="205" y1="186.0" x2="900" y2="186.0" stroke="#2a78d6" stroke-width="1.4" stroke-dasharray="5,4"/>
+<text x="552.5" y="180.0" font-size="9.5" font-weight="400" fill="#2a78d6" text-anchor="middle">skip (concat)</text>
+<line x1="320" y1="272.0" x2="815" y2="272.0" stroke="#2a78d6" stroke-width="1.4" stroke-dasharray="5,4"/>
+<text x="567.5" y="266.0" font-size="9.5" font-weight="400" fill="#2a78d6" text-anchor="middle">skip (concat)</text>
+<line x1="435" y1="358.0" x2="700" y2="358.0" stroke="#2a78d6" stroke-width="1.4" stroke-dasharray="5,4"/>
+<text x="567.5" y="352.0" font-size="9.5" font-weight="400" fill="#2a78d6" text-anchor="middle">skip (concat)</text>
+<line x1="150" y1="130" x2="130.0" y2="150" stroke="#8c959f" stroke-width="2" marker-end="url(#a)"/>
+<line x1="130.0" y1="222" x2="245.0" y2="236" stroke="#8c959f" stroke-width="2" marker-end="url(#a)"/>
+<line x1="245.0" y1="308" x2="360.0" y2="322" stroke="#8c959f" stroke-width="2" marker-end="url(#a)"/>
+<line x1="360.0" y1="394" x2="565.0" y2="408" stroke="#8c959f" stroke-width="2" marker-end="url(#a)"/>
+<line x1="565.0" y1="408" x2="775.0" y2="394" stroke="#8c959f" stroke-width="2" marker-end="url(#a)"/>
+<line x1="775.0" y1="322" x2="890.0" y2="308" stroke="#8c959f" stroke-width="2" marker-end="url(#a)"/>
+<line x1="890.0" y1="236" x2="970.0" y2="222" stroke="#8c959f" stroke-width="2" marker-end="url(#a)"/>
+<line x1="1040" y1="186.0" x2="1050" y2="186.0" stroke="#8c959f" stroke-width="2" marker-end="url(#a)"/>
+<rect x="55" y="150" width="150" height="72" rx="8" fill="#f6f8fa" stroke="#c4cbd3" stroke-width="1.6"/>
+<text x="130.0" y="170" font-size="12.5" font-weight="700" fill="#0b0b0b" text-anchor="middle">inc</text>
+<text x="130.0" y="186" font-size="11" font-weight="400" fill="#52514e" text-anchor="middle">DConv 1&#8594;32</text>
+<text x="130.0" y="200" font-size="10.5" font-weight="400" fill="#8c959f" text-anchor="middle">32 &#215; 256&#178;</text>
+<text x="130.0" y="212" font-size="10.5" font-weight="400" fill="#8c959f" text-anchor="middle">9.7k</text>
+<rect x="170" y="236" width="150" height="72" rx="8" fill="#f6f8fa" stroke="#c4cbd3" stroke-width="1.6"/>
+<text x="245.0" y="256" font-size="12.5" font-weight="700" fill="#0b0b0b" text-anchor="middle">d1</text>
+<text x="245.0" y="272" font-size="11" font-weight="400" fill="#52514e" text-anchor="middle">DConv 32&#8594;64</text>
+<text x="245.0" y="286" font-size="10.5" font-weight="400" fill="#8c959f" text-anchor="middle">64 &#215; 128&#178;</text>
+<text x="245.0" y="298" font-size="10.5" font-weight="400" fill="#8c959f" text-anchor="middle">55.7k</text>
+<rect x="285" y="322" width="150" height="72" rx="8" fill="#f6f8fa" stroke="#c4cbd3" stroke-width="1.6"/>
+<text x="360.0" y="342" font-size="12.5" font-weight="700" fill="#0b0b0b" text-anchor="middle">d2</text>
+<text x="360.0" y="358" font-size="11" font-weight="400" fill="#52514e" text-anchor="middle">DConv 64&#8594;128</text>
+<text x="360.0" y="372" font-size="10.5" font-weight="400" fill="#8c959f" text-anchor="middle">128 &#215; 64&#178;</text>
+<text x="360.0" y="384" font-size="10.5" font-weight="400" fill="#8c959f" text-anchor="middle">222k</text>
+<rect x="470" y="408" width="190" height="72" rx="8" fill="#f6f8fa" stroke="#c4cbd3" stroke-width="1.6"/>
+<text x="565.0" y="428" font-size="12.5" font-weight="700" fill="#0b0b0b" text-anchor="middle">d3 (bottleneck)</text>
+<text x="565.0" y="444" font-size="11" font-weight="400" fill="#52514e" text-anchor="middle">DConv 128&#8594;256</text>
+<text x="565.0" y="458" font-size="10.5" font-weight="400" fill="#8c959f" text-anchor="middle">256 &#215; 32&#178;</text>
+<text x="565.0" y="470" font-size="10.5" font-weight="400" fill="#8c959f" text-anchor="middle">886k</text>
+<rect x="700" y="322" width="150" height="72" rx="8" fill="#f6f8fa" stroke="#c4cbd3" stroke-width="1.6"/>
+<text x="775.0" y="342" font-size="12.5" font-weight="700" fill="#0b0b0b" text-anchor="middle">u3</text>
+<text x="775.0" y="358" font-size="11" font-weight="400" fill="#52514e" text-anchor="middle">DConv 384&#8594;128</text>
+<text x="775.0" y="372" font-size="10.5" font-weight="400" fill="#8c959f" text-anchor="middle">128 &#215; 64&#178;</text>
+<text x="775.0" y="384" font-size="10.5" font-weight="400" fill="#8c959f" text-anchor="middle">591k</text>
+<rect x="815" y="236" width="150" height="72" rx="8" fill="#f6f8fa" stroke="#c4cbd3" stroke-width="1.6"/>
+<text x="890.0" y="256" font-size="12.5" font-weight="700" fill="#0b0b0b" text-anchor="middle">u2</text>
+<text x="890.0" y="272" font-size="11" font-weight="400" fill="#52514e" text-anchor="middle">DConv 192&#8594;64</text>
+<text x="890.0" y="286" font-size="10.5" font-weight="400" fill="#8c959f" text-anchor="middle">64 &#215; 128&#178;</text>
+<text x="890.0" y="298" font-size="10.5" font-weight="400" fill="#8c959f" text-anchor="middle">148k</text>
+<rect x="900" y="150" width="140" height="72" rx="8" fill="#f6f8fa" stroke="#c4cbd3" stroke-width="1.6"/>
+<text x="970.0" y="170" font-size="12.5" font-weight="700" fill="#0b0b0b" text-anchor="middle">u1</text>
+<text x="970.0" y="186" font-size="11" font-weight="400" fill="#52514e" text-anchor="middle">DConv 96&#8594;32</text>
+<text x="970.0" y="200" font-size="10.5" font-weight="400" fill="#8c959f" text-anchor="middle">32 &#215; 256&#178;</text>
+<text x="970.0" y="212" font-size="10.5" font-weight="400" fill="#8c959f" text-anchor="middle">37k</text>
+<rect x="1050" y="150" width="150" height="72" rx="8" fill="#fdece3" stroke="#eb6834" stroke-width="1.6"/>
+<text x="1125.0" y="170" font-size="12.5" font-weight="700" fill="#0b0b0b" text-anchor="middle">outc</text>
+<text x="1125.0" y="186" font-size="11" font-weight="400" fill="#52514e" text-anchor="middle">Conv 1&#215;1 32&#8594;1</text>
+<text x="1125.0" y="200" font-size="10.5" font-weight="400" fill="#8c959f" text-anchor="middle">1 &#215; 256&#178;</text>
+<text x="1125.0" y="212" font-size="10.5" font-weight="400" fill="#8c959f" text-anchor="middle">33</text>
+<rect x="470" y="150" width="210" height="60" rx="8" fill="#ffffff" stroke="#8c959f" stroke-width="1.2"/>
+<text x="575" y="170" font-size="11" font-weight="700" fill="#0b0b0b" text-anchor="middle">DConv(a&#8594;b) =</text>
+<text x="575" y="186" font-size="10" font-weight="400" fill="#52514e" text-anchor="middle">[Conv 3&#215;3 (pad 1), BN, ReLU]</text>
+<text x="575" y="200" font-size="10" font-weight="400" fill="#52514e" text-anchor="middle">&#215; 2</text>
+<text x="40" y="500" font-size="11.5" font-weight="400" fill="#52514e" text-anchor="start">Total 1,949,121 params per view. Deployed as two independent U-Nets (AP + lateral, ~3.9M); the L2-retrained lateral head is the same shape.</text>
+<text x="40" y="517" font-size="11.5" font-weight="400" fill="#52514e" text-anchor="start">Down path: 2&#215;2 maxpool between stages. Up path: bilinear upsample &#215;2 to the skip resolution, then concatenate the skip channels.</text>
+<line x1="40" y1="531" x2="1180" y2="531" stroke="#e5e7eb" stroke-width="1.4"/>
+<text x="40" y="560" font-size="15" font-weight="700" fill="#0b0b0b" text-anchor="start">2 &#183; Addressing network  (rib-level assignment &#183; 48.8k params)</text>
+<rect x="40" y="585" width="120" height="40" rx="7" fill="#eaf1fb" stroke="#2a78d6" stroke-width="1.4"/>
+<text x="100.0" y="603.0" font-size="10.5" font-weight="700" fill="#0b0b0b" text-anchor="middle">AP proj</text>
+<text x="100.0" y="618.0" font-size="9.5" font-weight="400" fill="#52514e" text-anchor="middle">1 &#215; 256&#178;</text>
+<rect x="185" y="585" width="105" height="40" rx="7" fill="#f6f8fa" stroke="#c4cbd3" stroke-width="1.4"/>
+<text x="237.5" y="603.0" font-size="10.5" font-weight="700" fill="#0b0b0b" text-anchor="middle">Conv 1&#8594;16 &#8595;</text>
+<text x="237.5" y="618.0" font-size="9.5" font-weight="400" fill="#52514e" text-anchor="middle">BN&#183;ReLU&#183;pool &#183; 128&#178;</text>
+<line x1="163" y1="605" x2="185" y2="605" stroke="#8c959f" stroke-width="2" marker-end="url(#a)"/>
+<rect x="312" y="585" width="105" height="40" rx="7" fill="#f6f8fa" stroke="#c4cbd3" stroke-width="1.4"/>
+<text x="364.5" y="603.0" font-size="10.5" font-weight="700" fill="#0b0b0b" text-anchor="middle">Conv 16&#8594;32 &#8595;</text>
+<text x="364.5" y="618.0" font-size="9.5" font-weight="400" fill="#52514e" text-anchor="middle">BN&#183;ReLU&#183;pool &#183; 64&#178;</text>
+<line x1="290" y1="605" x2="312" y2="605" stroke="#8c959f" stroke-width="2" marker-end="url(#a)"/>
+<rect x="439" y="585" width="105" height="40" rx="7" fill="#f6f8fa" stroke="#c4cbd3" stroke-width="1.4"/>
+<text x="491.5" y="603.0" font-size="10.5" font-weight="700" fill="#0b0b0b" text-anchor="middle">Conv 32&#8594;64 &#8595;</text>
+<text x="491.5" y="618.0" font-size="9.5" font-weight="400" fill="#52514e" text-anchor="middle">BN&#183;ReLU&#183;pool &#183; 32&#178;</text>
+<line x1="417" y1="605" x2="439" y2="605" stroke="#8c959f" stroke-width="2" marker-end="url(#a)"/>
+<rect x="566" y="585" width="90" height="40" rx="7" fill="#f6f8fa" stroke="#c4cbd3" stroke-width="1.4"/>
+<text x="611.0" y="603.0" font-size="10.5" font-weight="700" fill="#0b0b0b" text-anchor="middle">GAP</text>
+<text x="611.0" y="618.0" font-size="9.5" font-weight="400" fill="#52514e" text-anchor="middle">&#8594; 64-d</text>
+<line x1="544" y1="605" x2="566" y2="605" stroke="#8c959f" stroke-width="2" marker-end="url(#a)"/>
+<rect x="40" y="645" width="120" height="40" rx="7" fill="#eaf1fb" stroke="#2a78d6" stroke-width="1.4"/>
+<text x="100.0" y="663.0" font-size="10.5" font-weight="700" fill="#0b0b0b" text-anchor="middle">lateral proj</text>
+<text x="100.0" y="678.0" font-size="9.5" font-weight="400" fill="#52514e" text-anchor="middle">1 &#215; 256&#178;</text>
+<rect x="185" y="645" width="105" height="40" rx="7" fill="#f6f8fa" stroke="#c4cbd3" stroke-width="1.4"/>
+<text x="237.5" y="663.0" font-size="10.5" font-weight="700" fill="#0b0b0b" text-anchor="middle">Conv 1&#8594;16 &#8595;</text>
+<text x="237.5" y="678.0" font-size="9.5" font-weight="400" fill="#52514e" text-anchor="middle">BN&#183;ReLU&#183;pool &#183; 128&#178;</text>
+<line x1="163" y1="665" x2="185" y2="665" stroke="#8c959f" stroke-width="2" marker-end="url(#a)"/>
+<rect x="312" y="645" width="105" height="40" rx="7" fill="#f6f8fa" stroke="#c4cbd3" stroke-width="1.4"/>
+<text x="364.5" y="663.0" font-size="10.5" font-weight="700" fill="#0b0b0b" text-anchor="middle">Conv 16&#8594;32 &#8595;</text>
+<text x="364.5" y="678.0" font-size="9.5" font-weight="400" fill="#52514e" text-anchor="middle">BN&#183;ReLU&#183;pool &#183; 64&#178;</text>
+<line x1="290" y1="665" x2="312" y2="665" stroke="#8c959f" stroke-width="2" marker-end="url(#a)"/>
+<rect x="439" y="645" width="105" height="40" rx="7" fill="#f6f8fa" stroke="#c4cbd3" stroke-width="1.4"/>
+<text x="491.5" y="663.0" font-size="10.5" font-weight="700" fill="#0b0b0b" text-anchor="middle">Conv 32&#8594;64 &#8595;</text>
+<text x="491.5" y="678.0" font-size="9.5" font-weight="400" fill="#52514e" text-anchor="middle">BN&#183;ReLU&#183;pool &#183; 32&#178;</text>
+<line x1="417" y1="665" x2="439" y2="665" stroke="#8c959f" stroke-width="2" marker-end="url(#a)"/>
+<rect x="566" y="645" width="90" height="40" rx="7" fill="#f6f8fa" stroke="#c4cbd3" stroke-width="1.4"/>
+<text x="611.0" y="663.0" font-size="10.5" font-weight="700" fill="#0b0b0b" text-anchor="middle">GAP</text>
+<text x="611.0" y="678.0" font-size="9.5" font-weight="400" fill="#52514e" text-anchor="middle">&#8594; 64-d</text>
+<line x1="544" y1="665" x2="566" y2="665" stroke="#8c959f" stroke-width="2" marker-end="url(#a)"/>
+<rect x="696" y="615" width="95" height="40" rx="7" fill="#eef1f4" stroke="#8c959f" stroke-width="1.4"/>
+<text x="743.5" y="633.0" font-size="10.5" font-weight="700" fill="#0b0b0b" text-anchor="middle">concat</text>
+<text x="743.5" y="648.0" font-size="9.5" font-weight="400" fill="#52514e" text-anchor="middle">&#8594; 128-d</text>
+<line x1="656" y1="605" x2="696" y2="635" stroke="#8c959f" stroke-width="1.4"/>
+<line x1="656" y1="665" x2="696" y2="635" stroke="#8c959f" stroke-width="1.4"/>
+<rect x="821" y="585" width="220" height="26" rx="7" fill="#fdece3" stroke="#eb6834" stroke-width="1.4"/>
+<text x="931.0" y="602.0" font-size="10.5" font-weight="700" fill="#0b0b0b" text-anchor="middle">side head: Linear 128&#8594;1 (sigmoid)</text>
+<line x1="791" y1="635" x2="821" y2="598" stroke="#8c959f" stroke-width="2" marker-end="url(#a)"/>
+<rect x="821" y="615" width="220" height="26" rx="7" fill="#fdece3" stroke="#eb6834" stroke-width="1.4"/>
+<text x="931.0" y="632.0" font-size="10.5" font-weight="700" fill="#0b0b0b" text-anchor="middle">rib head: Linear 128&#8594;12 (softmax)</text>
+<line x1="791" y1="635" x2="821" y2="628" stroke="#8c959f" stroke-width="2" marker-end="url(#a)"/>
+<rect x="821" y="645" width="220" height="26" rx="7" fill="#fdece3" stroke="#eb6834" stroke-width="1.4"/>
+<text x="931.0" y="662.0" font-size="10.5" font-weight="700" fill="#0b0b0b" text-anchor="middle">addr. head: Linear 128&#8594;1 (sigmoid)</text>
+<line x1="791" y1="635" x2="821" y2="658" stroke="#8c959f" stroke-width="2" marker-end="url(#a)"/>
+<text x="40" y="705" font-size="11.5" font-weight="400" fill="#52514e" text-anchor="start">Two identical CNN streams &#8594; 64-d each &#8594; concat 128-d &#8594; three linear heads. Reported address_score = side confidence &#215; rib probability. Runs on the RAW projections.</text>
+<line x1="40" y1="725" x2="1180" y2="725" stroke="#e5e7eb" stroke-width="1.4"/>
+<text x="40" y="757" font-size="15" font-weight="700" fill="#0b0b0b" text-anchor="start">3 &#183; Learned pair-scorer  (cross-view correspondence, D2b &#183; 12.6k params)</text>
+<rect x="40" y="782" width="110" height="40" rx="7" fill="#eaf1fb" stroke="#2a78d6" stroke-width="1.4"/>
+<text x="95.0" y="800.0" font-size="10.5" font-weight="700" fill="#0b0b0b" text-anchor="middle">AP crop</text>
+<text x="95.0" y="815.0" font-size="9.5" font-weight="400" fill="#52514e" text-anchor="middle">1 &#215; 40&#178;</text>
+<rect x="40" y="834" width="110" height="40" rx="7" fill="#eaf1fb" stroke="#2a78d6" stroke-width="1.4"/>
+<text x="95.0" y="852.0" font-size="10.5" font-weight="700" fill="#0b0b0b" text-anchor="middle">lateral crop</text>
+<text x="95.0" y="867.0" font-size="9.5" font-weight="400" fill="#52514e" text-anchor="middle">1 &#215; 40&#178;</text>
+<rect x="200" y="808" width="250" height="40" rx="7" fill="#f6f8fa" stroke="#c4cbd3" stroke-width="1.4"/>
+<text x="325.0" y="826.0" font-size="10.5" font-weight="700" fill="#0b0b0b" text-anchor="middle">shared tower</text>
+<text x="325.0" y="841.0" font-size="9.5" font-weight="400" fill="#52514e" text-anchor="middle">Conv&#8595;16 &#183; Conv&#8595;32 &#183; GAP &#183; FC&#8594;32</text>
+<line x1="152" y1="802" x2="200" y2="822" stroke="#8c959f" stroke-width="2" marker-end="url(#a)"/>
+<line x1="152" y1="854" x2="200" y2="822" stroke="#8c959f" stroke-width="2" marker-end="url(#a)"/>
+<text x="325" y="864" font-size="9.5" font-weight="400" fill="#8c959f" text-anchor="middle">&#8594; ea, el (32-d each)</text>
+<rect x="485" y="798" width="250" height="40" rx="7" fill="#eef1f4" stroke="#8c959f" stroke-width="1.4"/>
+<text x="610.0" y="816.0" font-size="10.5" font-weight="700" fill="#0b0b0b" text-anchor="middle">combine</text>
+<text x="610.0" y="831.0" font-size="9.5" font-weight="400" fill="#52514e" text-anchor="middle">[ea, el, ea&#215;el] + 6 scalars &#8594; 102-d</text>
+<line x1="450" y1="828" x2="485" y2="818" stroke="#8c959f" stroke-width="2" marker-end="url(#a)"/>
+<rect x="765" y="798" width="200" height="40" rx="7" fill="#f6f8fa" stroke="#c4cbd3" stroke-width="1.4"/>
+<text x="865.0" y="816.0" font-size="10.5" font-weight="700" fill="#0b0b0b" text-anchor="middle">MLP head</text>
+<text x="865.0" y="831.0" font-size="9.5" font-weight="400" fill="#52514e" text-anchor="middle">102&#8594;64, ReLU, drop 0.4, 64&#8594;1</text>
+<line x1="735" y1="818" x2="765" y2="818" stroke="#8c959f" stroke-width="2" marker-end="url(#a)"/>
+<rect x="765" y="848" width="200" height="26" rx="7" fill="#fdece3" stroke="#eb6834" stroke-width="1.4"/>
+<text x="865.0" y="865.0" font-size="10.5" font-weight="700" fill="#0b0b0b" text-anchor="middle">pair score</text>
+<line x1="865" y1="838" x2="865" y2="848" stroke="#8c959f" stroke-width="2" marker-end="url(#a)"/>
+<text x="40" y="894" font-size="11.5" font-weight="400" fill="#52514e" text-anchor="start">6 scalars = normalized |&#916;SI|, AP score, lateral score, and the min / product / asymmetry of the two confidences. Does not beat detector confidence at the operational budget.</text>
+</svg>

@@ -1,0 +1,32 @@
+{
+  "gate": 30.0,
+  "cost": "geomean_conf",
+  "mutual_best": false,
+  "u": 0.41666666666666663,
+  "false_3d_cap_per_case_at_10mm": 1.0,
+  "selection": "single config on ALL dev val cases (no folds) at the cap",
+  "feasible_within_cap": true,
+  "dev_recall10": 0.0285,
+  "dev_false_3d_per_case_at_10mm": 0.446,
+  "dev_correct10": 14,
+  "detector_run": "outputs/detector_L2_lateral_hnm",
+  "dev_data_sha256": "66ce66cef9006a6671dc397f00da3759a4a1723ca54d743ab1c36a4a0c0eb114",
+  "pairs_npz": "outputs/L2_sweep/L2_latN3_f010_D0_pairs.npz",
+  "gates_grid": [
+    6.0,
+    8.0,
+    10.0,
+    12.0,
+    16.0,
+    20.0,
+    30.0
+  ],
+  "costs_grid": [
+    "si",
+    "min_conf",
+    "prod_conf",
+    "geomean_conf",
+    "si_norm_invconf",
+    "lat_weighted"
+  ]
+}

@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 620" font-family="Helvetica, Arial, sans-serif">
+  <rect width="940" height="620" fill="#ffffff"/>
+  <text x="470" y="40" text-anchor="middle" font-size="22" font-weight="700" fill="#0b0b0b">Locating the binding constraint on 3D reconstruction</text>
+  <text x="470" y="64" text-anchor="middle" font-size="13" fill="#52514e">each candidate cause ruled out in turn until the one that, when fixed, moved the operational frontier</text>
+
+  <defs>
+    <marker id="d" markerWidth="10" markerHeight="10" refX="4" refY="7" orient="auto"><path d="M0,0 L8,0 L4,7 Z" fill="#c4cbd3"/></marker>
+  </defs>
+
+  <!-- ruled-out rows -->
+  <g>
+    <rect x="70" y="90" width="800" height="60" rx="9" fill="#f6f8fa" stroke="#e6e6e3" stroke-width="1.4"/>
+    <circle cx="104" cy="120" r="12" fill="#eaf1fb" stroke="#2a78d6" stroke-width="1.6"/>
+    <text x="104" y="125" text-anchor="middle" font-size="13" font-weight="700" fill="#2a78d6">1</text>
+    <text x="132" y="115" font-size="15" font-weight="700" fill="#0b0b0b">Projection geometry?</text>
+    <text x="132" y="135" font-size="12" fill="#52514e">Stage A — ruled out: 0.0 mm transform round-trip; triangulation is exact.</text>
+    <text x="850" y="126" text-anchor="end" font-size="12" font-weight="700" fill="#8c959f">RULED OUT</text>
+  </g>
+  <line x1="470" y1="150" x2="470" y2="166" stroke="#c4cbd3" stroke-width="2" marker-end="url(#d)"/>
+
+  <g>
+    <rect x="70" y="168" width="800" height="60" rx="9" fill="#f6f8fa" stroke="#e6e6e3" stroke-width="1.4"/>
+    <circle cx="104" cy="198" r="12" fill="#eaf1fb" stroke="#2a78d6" stroke-width="1.6"/>
+    <text x="104" y="203" text-anchor="middle" font-size="13" font-weight="700" fill="#2a78d6">2</text>
+    <text x="132" y="193" font-size="15" font-weight="700" fill="#0b0b0b">Detector localization?</text>
+    <text x="132" y="213" font-size="12" fill="#52514e">Stage B — ruled out: median ~4 mm, rib-accurate given correct correspondence.</text>
+    <text x="850" y="204" text-anchor="end" font-size="12" font-weight="700" fill="#8c959f">RULED OUT</text>
+  </g>
+  <line x1="470" y1="228" x2="470" y2="244" stroke="#c4cbd3" stroke-width="2" marker-end="url(#d)"/>
+
+  <g>
+    <rect x="70" y="246" width="800" height="60" rx="9" fill="#f6f8fa" stroke="#e6e6e3" stroke-width="1.4"/>
+    <circle cx="104" cy="276" r="12" fill="#eaf1fb" stroke="#2a78d6" stroke-width="1.6"/>
+    <text x="104" y="281" text-anchor="middle" font-size="13" font-weight="700" fill="#2a78d6">3</text>
+    <text x="132" y="271" font-size="15" font-weight="700" fill="#0b0b0b">Correspondence algorithm?</text>
+    <text x="132" y="291" font-size="12" fill="#52514e">D1 deterministic + D2 learned — both 0% recall@10 at ≤1 false on frozen detections.</text>
+    <text x="850" y="282" text-anchor="end" font-size="12" font-weight="700" fill="#8c959f">RULED OUT</text>
+  </g>
+  <line x1="470" y1="306" x2="470" y2="322" stroke="#c4cbd3" stroke-width="2" marker-end="url(#d)"/>
+
+  <g>
+    <rect x="70" y="324" width="800" height="60" rx="9" fill="#f6f8fa" stroke="#e6e6e3" stroke-width="1.4"/>
+    <circle cx="104" cy="354" r="12" fill="#eaf1fb" stroke="#2a78d6" stroke-width="1.6"/>
+    <text x="104" y="359" text-anchor="middle" font-size="13" font-weight="700" fill="#2a78d6">4</text>
+    <text x="132" y="349" font-size="15" font-weight="700" fill="#0b0b0b">Candidate-field density?</text>
+    <text x="132" y="369" font-size="12" fill="#52514e">L1 recalibration — ruled out: 4× cleaner field, frontier still 0% (floor-invariant).</text>
+    <text x="850" y="360" text-anchor="end" font-size="12" font-weight="700" fill="#8c959f">RULED OUT</text>
+  </g>
+  <line x1="470" y1="384" x2="470" y2="400" stroke="#eb6834" stroke-width="2.4" marker-end="url(#d)"/>
+
+  <!-- the constraint -->
+  <rect x="70" y="402" width="800" height="74" rx="9" fill="#fdece3" stroke="#eb6834" stroke-width="2.4"/>
+  <circle cx="104" cy="439" r="13" fill="#eb6834"/>
+  <text x="104" y="444" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">!</text>
+  <text x="132" y="430" font-size="16" font-weight="700" fill="#eb6834">Lateral availability  ← the binding constraint</text>
+  <text x="132" y="451" font-size="12.5" fill="#52514e">L2 retraining lifts amplitude 0.091→0.155 and dual-view availability 0.52→0.76,</text>
+  <text x="132" y="468" font-size="12.5" fill="#52514e">unlocking the first committed reconstructions (frontier 0% → 2.44% dev).</text>
+
+  <!-- sealed outcome -->
+  <rect x="70" y="500" width="800" height="58" rx="9" fill="#eaf1fb" stroke="#2a78d6" stroke-width="1.8"/>
+  <text x="470" y="525" text-anchor="middle" font-size="14.5" font-weight="700" fill="#2a78d6">Sealed test confirms: 2.50% recall@10 (15/601) at 0.436 false-3D/case</text>
+  <text x="470" y="546" text-anchor="middle" font-size="12.5" fill="#52514e">case-bootstrap 95% CI [0.69%, 4.48%] excludes zero · directional proof, not yet a usable system</text>
+
+  <!-- residual -->
+  <text x="470" y="590" text-anchor="middle" font-size="12.5" fill="#8c959f">Residual limitations: detector confidence calibration + real-vs-real cross-view disambiguation.</text>
+</svg>

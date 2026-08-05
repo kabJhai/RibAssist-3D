@@ -1,0 +1,470 @@
+{
+  "audit": "D0 \u2014 candidate-pair data audit + BROAD pair graph (frozen detector, det-validation split, many-to-one)",
+  "diagnostic_status": "development audit on the detector-validation split (biased; sealed test first confirmatory). Extraction-floor peaks; SI in voxel units; mm via canonical NIfTI header when --image-dirs given. NPZ contains the BROAD graph (<= audit_gate_max) for the D1 gate sweep; JSON headline is at the deployed si_tol. Governing objective is 3D reconstruction candidate generation.",
+  "detector_run": "outputs/detector_dev_scratch_c32_both_gated",
+  "data_sha256": "75c62ab5286dedbfd6e6d994f8b1ede6e969a9e505aaded43379f672fdb0514d",
+  "val_cases": 55,
+  "extraction_policy": {
+    "ap_nms": 5,
+    "ap_floor": 0.05,
+    "lat_nms": 3,
+    "lat_floor": 0.06,
+    "is_deployed": false
+  },
+  "si_tol_voxels": 6.0,
+  "audit_gate_max_voxels": 30.0,
+  "match_radius_px": 8,
+  "pair_dataset_npz": "outputs/sealed/frozen_sealed_D0_pairs.npz",
+  "pair_dataset_ambiguous_sidecar": "outputs/sealed/frozen_sealed_D0_ambiguous_pairs.json",
+  "pair_graph": {
+    "potential_pairs_before_si_gating": 115512,
+    "pairs_after_deployed_si_gating": 5260,
+    "pairs_in_broad_graph_npz": 22090,
+    "si_gating_retention_frac": 0.0455,
+    "mean_ap_peaks_per_case": 40.5,
+    "mean_lat_peaks_per_case": 50.5,
+    "identity_ambiguous_gated_pairs_deployed": 869
+  },
+  "graph_class_counts_deployed": {
+    "positive_capable": 305,
+    "cross_instance_only": 207,
+    "one_sided": 1606,
+    "fully_false": 3142,
+    "total": 5260
+  },
+  "graph_class_fraction_deployed": {
+    "positive_capable": 0.058,
+    "cross_instance_only": 0.0394,
+    "one_sided": 0.3053,
+    "fully_false": 0.5973
+  },
+  "positives_capable_per_case_deployed": {
+    "n": 55,
+    "mean": 5.545,
+    "median": 4.0,
+    "p10": 1.0,
+    "p90": 11.2,
+    "max": 19.0
+  },
+  "per_class_features_deployed": {
+    "positive_capable": {
+      "ap_score": {
+        "n": 305,
+        "mean": 0.12,
+        "median": 0.1,
+        "p10": 0.068,
+        "p90": 0.223,
+        "max": 0.292
+      },
+      "lat_score": {
+        "n": 305,
+        "mean": 0.08,
+        "median": 0.082,
+        "p10": 0.069,
+        "p90": 0.088,
+        "max": 0.094
+      },
+      "min_score": {
+        "n": 305,
+        "mean": 0.077,
+        "median": 0.078,
+        "p10": 0.064,
+        "p90": 0.087,
+        "max": 0.094
+      },
+      "max_score_fused": {
+        "n": 305,
+        "mean": 0.123,
+        "median": 0.1,
+        "p10": 0.08,
+        "p90": 0.223,
+        "max": 0.292
+      },
+      "prod_score": {
+        "n": 305,
+        "mean": 0.01,
+        "median": 0.008,
+        "p10": 0.005,
+        "p90": 0.017,
+        "max": 0.023
+      },
+      "dsi_vox": {
+        "n": 305,
+        "mean": 3.068,
+        "median": 4.0,
+        "p10": 0.0,
+        "p90": 6.0,
+        "max": 6.0
+      },
+      "dsi_mm": {
+        "n": 305,
+        "mean": 3.475,
+        "median": 4.0,
+        "p10": 0.0,
+        "p90": 7.5,
+        "max": 7.5
+      },
+      "frac_selected_by_form_pairs": 0.2984
+    },
+    "cross_instance_only": {
+      "ap_score": {
+        "n": 207,
+        "mean": 0.112,
+        "median": 0.099,
+        "p10": 0.066,
+        "p90": 0.191,
+        "max": 0.292
+      },
+      "lat_score": {
+        "n": 207,
+        "mean": 0.08,
+        "median": 0.081,
+        "p10": 0.07,
+        "p90": 0.088,
+        "max": 0.095
+      },
+      "min_score": {
+        "n": 207,
+        "mean": 0.076,
+        "median": 0.078,
+        "p10": 0.064,
+        "p90": 0.086,
+        "max": 0.094
+      },
+      "max_score_fused": {
+        "n": 207,
+        "mean": 0.116,
+        "median": 0.099,
+        "p10": 0.078,
+        "p90": 0.191,
+        "max": 0.292
+      },
+      "prod_score": {
+        "n": 207,
+        "mean": 0.009,
+        "median": 0.008,
+        "p10": 0.005,
+        "p90": 0.015,
+        "max": 0.023
+      },
+      "dsi_vox": {
+        "n": 207,
+        "mean": 3.322,
+        "median": 4.0,
+        "p10": 0.0,
+        "p90": 6.0,
+        "max": 6.0
+      },
+      "dsi_mm": {
+        "n": 207,
+        "mean": 3.701,
+        "median": 4.0,
+        "p10": 0.0,
+        "p90": 7.5,
+        "max": 7.5
+      },
+      "frac_selected_by_form_pairs": 0.2899
+    },
+    "one_sided": {
+      "ap_score": {
+        "n": 1606,
+        "mean": 0.096,
+        "median": 0.087,
+        "p10": 0.06,
+        "p90": 0.142,
+        "max": 0.292
+      },
+      "lat_score": {
+        "n": 1606,
+        "mean": 0.077,
+        "median": 0.079,
+        "p10": 0.063,
+        "p90": 0.088,
+        "max": 0.095
+      },
+      "min_score": {
+        "n": 1606,
+        "mean": 0.072,
+        "median": 0.072,
+        "p10": 0.06,
+        "p90": 0.086,
+        "max": 0.095
+      },
+      "max_score_fused": {
+        "n": 1606,
+        "mean": 0.101,
+        "median": 0.09,
+        "p10": 0.074,
+        "p90": 0.142,
+        "max": 0.292
+      },
+      "prod_score": {
+        "n": 1606,
+        "mean": 0.007,
+        "median": 0.007,
+        "p10": 0.005,
+        "p90": 0.011,
+        "max": 0.025
+      },
+      "dsi_vox": {
+        "n": 1606,
+        "mean": 3.465,
+        "median": 4.0,
+        "p10": 0.0,
+        "p90": 6.0,
+        "max": 6.0
+      },
+      "dsi_mm": {
+        "n": 1606,
+        "mean": 3.876,
+        "median": 4.0,
+        "p10": 0.0,
+        "p90": 7.5,
+        "max": 7.5
+      },
+      "frac_selected_by_form_pairs": 0.2889
+    },
+    "fully_false": {
+      "ap_score": {
+        "n": 3142,
+        "mean": 0.085,
+        "median": 0.079,
+        "p10": 0.055,
+        "p90": 0.123,
+        "max": 0.21
+      },
+      "lat_score": {
+        "n": 3142,
+        "mean": 0.075,
+        "median": 0.076,
+        "p10": 0.062,
+        "p90": 0.087,
+        "max": 0.095
+      },
+      "min_score": {
+        "n": 3142,
+        "mean": 0.068,
+        "median": 0.066,
+        "p10": 0.055,
+        "p90": 0.083,
+        "max": 0.094
+      },
+      "max_score_fused": {
+        "n": 3142,
+        "mean": 0.091,
+        "median": 0.085,
+        "p10": 0.067,
+        "p90": 0.123,
+        "max": 0.21
+      },
+      "prod_score": {
+        "n": 3142,
+        "mean": 0.006,
+        "median": 0.006,
+        "p10": 0.004,
+        "p90": 0.009,
+        "max": 0.018
+      },
+      "dsi_vox": {
+        "n": 3142,
+        "mean": 3.319,
+        "median": 4.0,
+        "p10": 0.0,
+        "p90": 6.0,
+        "max": 6.0
+      },
+      "dsi_mm": {
+        "n": 3142,
+        "mean": 3.726,
+        "median": 4.0,
+        "p10": 0.0,
+        "p90": 7.5,
+        "max": 7.5
+      },
+      "frac_selected_by_form_pairs": 0.296
+    }
+  },
+  "correct_pair_availability_existential": {
+    "gt_fractures": 601,
+    "with_compatible_ap_peak": 487,
+    "with_compatible_lat_peak": 397,
+    "compatible_ap_recall": 0.8103,
+    "compatible_lat_recall": 0.6606,
+    "detection_loss_no_ap": 114,
+    "detection_loss_no_lat": 204,
+    "existential_dual_view": 326,
+    "existential_dual_view_frac": 0.5424,
+    "correct_pair_exists_after_gate": 227,
+    "correct_pair_exists_after_gate_frac_of_dualview": 0.6963,
+    "removed_by_si_gating": 99,
+    "removed_by_si_gating_frac_of_dualview": 0.3037,
+    "fractures_with_frozen_selected_compatible_pair": 106,
+    "fractures_with_frozen_selected_unique_pair": 67,
+    "fractures_with_only_ambiguous_frozen_selection": 39,
+    "unique_selected_frac_of_dualview": 0.2055,
+    "compatible_selected_frac_of_dualview": 0.3252,
+    "lost_in_one_to_one_assignment": 121,
+    "current_graph_pre_assignment_pairability_ceiling_all_gt": 0.3777,
+    "note": "EXISTENTIAL (many-to-one): removed_by_si_gating = compatible peaks in BOTH views but NO same-iid combo within the deployed gate -> UPSTREAM loss no scorer recovers (redesign the graph; see the gate_sensitivity_sweep). lost_in_one_to_one_assignment = a same-iid combo IS in-graph but frozen form_pairs selected no compatible pair -> DOWNSTREAM, fixable by a better scorer/assignment. SELECTION split: unique (exactly one iid = actionable, AUTHORITATIVE) vs ambiguous (overlapping iids = uncertainty). pre_assignment_pairability_ceiling = fraction of ALL GT for which a same-fracture edge merely EXISTS on this gate; an UPPER BOUND before assignment, abstention, and reconstruction localization error (D1d turns it into actual accepted 3D recall within 5/10/15 mm). Widening the gate (sweep) or improving lateral recall raises it."
+  },
+  "assignment_ambiguity_existential_deployed": {
+    "n_dualview_with_competitor_within_gate": 227,
+    "frac_dualview_ambiguous": 0.6963,
+    "ap_side_competitors": {
+      "n": 326,
+      "mean": 3.755,
+      "median": 3.0,
+      "p10": 1.0,
+      "p90": 8.0,
+      "max": 21.0
+    },
+    "lat_side_competitors": {
+      "n": 326,
+      "mean": 4.077,
+      "median": 3.0,
+      "p10": 1.0,
+      "p90": 8.0,
+      "max": 23.0
+    },
+    "min_dsi_correct_combination_vox": {
+      "n": 326,
+      "mean": 5.949,
+      "median": 4.0,
+      "p10": 0.0,
+      "p90": 14.23,
+      "max": 38.562
+    }
+  },
+  "gate_sensitivity_sweep": {
+    "grid_vox": [
+      6.0,
+      8.0,
+      10.0,
+      12.0,
+      16.0,
+      20.0,
+      30.0
+    ],
+    "note": "per gate: existential correct-edge recall (pre-assignment pairability ceiling, an UPPER BOUND before assignment/abstention/localization), recovered vs deployed si_tol, broad-graph edges + class composition + positive prevalence, and mean competitors per dual-view fracture. Widening recovers true edges (Loss 2) but grows the negative-edge load and competitors -> judge each gate jointly, not by recall alone. Achievable accepted-3D recall / phantoms-per-case require assignment + reconstruction and are D1c/D1d, not D0.",
+    "rows": [
+      {
+        "gate_vox": 6.0,
+        "correct_edge_recall_fractures": 227,
+        "correct_edge_recall_frac_all_gt": 0.3777,
+        "recovered_vs_si_tol": 0,
+        "gated_edges": 5260,
+        "composition": {
+          "positive_capable": 305,
+          "cross_instance_only": 207,
+          "one_sided": 1606,
+          "fully_false": 3142
+        },
+        "positive_prevalence": 0.058,
+        "mean_competitors_per_dualview_fracture": 7.83,
+        "pre_assignment_pairability_ceiling_frac_all_gt": 0.3777
+      },
+      {
+        "gate_vox": 8.0,
+        "correct_edge_recall_fractures": 251,
+        "correct_edge_recall_frac_all_gt": 0.4176,
+        "recovered_vs_si_tol": 24,
+        "gated_edges": 6636,
+        "composition": {
+          "positive_capable": 379,
+          "cross_instance_only": 268,
+          "one_sided": 2036,
+          "fully_false": 3953
+        },
+        "positive_prevalence": 0.0571,
+        "mean_competitors_per_dualview_fracture": 9.92,
+        "pre_assignment_pairability_ceiling_frac_all_gt": 0.4176
+      },
+      {
+        "gate_vox": 10.0,
+        "correct_edge_recall_fractures": 272,
+        "correct_edge_recall_frac_all_gt": 0.4526,
+        "recovered_vs_si_tol": 45,
+        "gated_edges": 7947,
+        "composition": {
+          "positive_capable": 454,
+          "cross_instance_only": 345,
+          "one_sided": 2444,
+          "fully_false": 4704
+        },
+        "positive_prevalence": 0.0571,
+        "mean_competitors_per_dualview_fracture": 12.04,
+        "pre_assignment_pairability_ceiling_frac_all_gt": 0.4526
+      },
+      {
+        "gate_vox": 12.0,
+        "correct_edge_recall_fractures": 284,
+        "correct_edge_recall_frac_all_gt": 0.4725,
+        "recovered_vs_si_tol": 57,
+        "gated_edges": 9292,
+        "composition": {
+          "positive_capable": 525,
+          "cross_instance_only": 411,
+          "one_sided": 2854,
+          "fully_false": 5502
+        },
+        "positive_prevalence": 0.0565,
+        "mean_competitors_per_dualview_fracture": 14.16,
+        "pre_assignment_pairability_ceiling_frac_all_gt": 0.4725
+      },
+      {
+        "gate_vox": 16.0,
+        "correct_edge_recall_fractures": 304,
+        "correct_edge_recall_frac_all_gt": 0.5058,
+        "recovered_vs_si_tol": 77,
+        "gated_edges": 11962,
+        "composition": {
+          "positive_capable": 650,
+          "cross_instance_only": 531,
+          "one_sided": 3691,
+          "fully_false": 7090
+        },
+        "positive_prevalence": 0.0543,
+        "mean_competitors_per_dualview_fracture": 18.24,
+        "pre_assignment_pairability_ceiling_frac_all_gt": 0.5058
+      },
+      {
+        "gate_vox": 20.0,
+        "correct_edge_recall_fractures": 313,
+        "correct_edge_recall_frac_all_gt": 0.5208,
+        "recovered_vs_si_tol": 86,
+        "gated_edges": 14876,
+        "composition": {
+          "positive_capable": 766,
+          "cross_instance_only": 688,
+          "one_sided": 4589,
+          "fully_false": 8833
+        },
+        "positive_prevalence": 0.0515,
+        "mean_competitors_per_dualview_fracture": 22.98,
+        "pre_assignment_pairability_ceiling_frac_all_gt": 0.5208
+      },
+      {
+        "gate_vox": 30.0,
+        "correct_edge_recall_fractures": 324,
+        "correct_edge_recall_frac_all_gt": 0.5391,
+        "recovered_vs_si_tol": 97,
+        "gated_edges": 22090,
+        "composition": {
+          "positive_capable": 969,
+          "cross_instance_only": 1135,
+          "one_sided": 6889,
+          "fully_false": 13097
+        },
+        "positive_prevalence": 0.0439,
+        "mean_competitors_per_dualview_fracture": 35.01,
+        "pre_assignment_pairability_ceiling_frac_all_gt": 0.5391
+      }
+    ]
+  },
+  "secondary_one_to_one_continuity_audit": {
+    "note": "Stage B/C one-to-one Hungarian identity; continuity ONLY, NOT authoritative for existence.",
+    "dual_view_gt_one_to_one": 268,
+    "correct_pair_in_graph_one_to_one": 114,
+    "correct_pair_selected_one_to_one": 39
+  }
+}

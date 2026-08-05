@@ -1,0 +1,10 @@
+# Core RibAssist 3D runtime (inference, 3D anatomy, evaluation scripts).
+# Requires Python >=3.10 (see pyproject.toml).
+# Install PyTorch separately first if the default wheel is wrong for your platform:
+#   https://pytorch.org/get-started/locally/
+numpy>=1.23,<2
+scipy>=1.10
+nibabel>=5.0
+scikit-learn>=1.2
+scikit-image>=0.21
+torch>=2.0
