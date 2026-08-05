@@ -263,5 +263,3 @@ If you use RibAssist 3D, please cite this repository together with the RibFrac a
   year    = {2026}
 }
 ```
-
-Update this entry when the paper receives a permanent venue, DOI, or archive identifier.

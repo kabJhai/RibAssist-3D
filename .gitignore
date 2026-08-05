@@ -112,7 +112,7 @@ figures/*
 !figures/main_results.png
 !figures/ribassist_demo.gif
 
-# --- Internal documentation (not ready for public release) ---
+# --- Public documentation (ignore other markdown by default) ---
 *.md
 !README.md
 !MODEL_TERMS.md

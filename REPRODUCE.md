@@ -10,7 +10,7 @@ the run (fail-closed).
 
 All commands run from the repository root with the project virtualenv active.
 
-## 0. Quickest check (no data download)
+## 1. Quickest check (no data download)
 
 The headline sealed-evaluation JSONs are committed under `outputs/sealed/`, so a fresh clone can regenerate the
 main-results figure and confirm the reported numbers without any dataset, checkpoint, or GPU:
@@ -25,7 +25,7 @@ python scripts/make_main_results_figure.py \
 The regenerated figure reports frozen `recall@10 0.0%` (0/601) versus L2 `recall@10 2.50%` (15/601) at 0.436
 false-3D/case, case-bootstrap 95% CI 0.69%-4.48%. Everything below reproduces those JSONs from raw data.
 
-## 1. What is published vs local
+## 2. What is published vs local
 
 | In git | You prepare locally |
 |---|---|
@@ -50,7 +50,7 @@ python scripts/validate_local_artifacts.py --demo --strict
 python scripts/validate_local_artifacts.py --all --strict
 ```
 
-## 2. Environment
+## 3. Environment
 
 - Python **3.10+** (see `pyproject.toml`), packages in `requirements.txt` (NumPy, SciPy, PyTorch, nibabel,
   scikit-learn, matplotlib). Demo: `requirements-demo.txt` (Streamlit, Plotly).
@@ -59,7 +59,7 @@ python scripts/validate_local_artifacts.py --all --strict
   - `data/ribfrac_train/`, `data/ribfrac/`: RibFrac CT + labels
   - `data/ribseg/ribseg_v2/seg/`, `data/ribseg/ribseg_v2/cl/`: RibSeg v2
 
-## 3. Pinned artifact inventory
+## 4. Pinned artifact inventory
 
 These are the **expected sha256 digests** once you complete the pipeline. The demo and sealed-evaluation
 artifacts (assembled `det_test.npz`, both detector checkpoints, the addressing model, and the sealed policy /
@@ -84,9 +84,9 @@ and the two sealed source tensors (`det_test_inputs.npz`, `det_test_gt.npz`) are
 - L2 detector: gate 30, cost `geomean_conf`, mutual_best `false`, u `0.41666666666666663`
 - Extraction: AP `nms 5 / floor 0.05`; lateral frozen `nms 3 / floor 0.06`; L2 `nms 3 / floor 0.10`
 
-## 4. Build the detector dataset
+## 5. Build the detector dataset
 
-Uses the **published** `frozen_split.json` (do not open the sealed test until Section 10).
+Uses the **published** `frozen_split.json` (do not open the sealed test until Section 11).
 
 ```bash
 python scripts/make_det_data.py \
@@ -99,7 +99,7 @@ python scripts/make_det_data.py \
 Produces `det_dev.npz`, `det_test_inputs.npz`, `det_test_gt.npz`, and `det_manifest.json`. Training code
 loads **only** `det_dev.npz`; sealed sources stay separate until assembly.
 
-## 5. Train the champion detector (frozen head)
+## 6. Train the champion detector (frozen head)
 
 From-scratch dual-view U-Net, base channels 32, 80 epochs. Checkpoint selection uses the dev-internal val
 slice only.
@@ -135,7 +135,7 @@ python scripts/freeze_detector.py \
 
 The gated run (`detector_dev_scratch_c32_both_gated`) is the **frozen head** for correspondence evaluation.
 
-## 6. Addressing model (demo + rib-level output)
+## 7. Addressing model (demo + rib-level output)
 
 Build detector-frame crops and train the addressing network:
 
@@ -158,7 +158,7 @@ python scripts/train_address_deploy.py \
     --out outputs/addressing_model_ap_nopos
 ```
 
-## 7. Rib atlas (3D demo context)
+## 8. Rib atlas (3D demo context)
 
 Uses the published `geometry_split.json` for atlas build / val holdout:
 
@@ -174,7 +174,7 @@ python scripts/build_rib_atlas.py \
 Per-case reconstruction for the demo uses `scripts/reconstruct_3d.py` (called from `run_ribassist.py` /
 `demo_app/`).
 
-## 8. Correspondence diagnostics (L0 → L1)
+## 9. Correspondence diagnostics (L0 → L1)
 
 Optional but documented context for why lateral extraction was recalibrated:
 
@@ -198,7 +198,7 @@ bash scripts/run_L1_correspondence_sweep.sh
 
 Outputs land in `outputs/L1_sweep/` (remove that directory to re-run cleanly).
 
-## 9. Lateral retrain (L2) + floor sweep
+## 10. Lateral retrain (L2) + floor sweep
 
 ```bash
 python scripts/train_lateral_L2.py \
@@ -220,11 +220,11 @@ Optional L2 eval at the standing policy:
 bash scripts/run_L2_eval.sh
 ```
 
-## 10. Sealed confirmatory evaluation
+## 11. Sealed confirmatory evaluation
 
 **Prerequisites.** Stage 1 reads the two development candidate graphs produced earlier:
-`outputs/L1_sweep/latN3_f060_D0_pairs.npz` (from the L1 sweep, Section 8) and
-`outputs/L2_sweep/L2_latN3_f010_D0_pairs.npz` (from the L2 floor sweep, Section 9). Run Sections 5, 8, and 9
+`outputs/L1_sweep/latN3_f060_D0_pairs.npz` (from the L1 sweep, Section 9) and
+`outputs/L2_sweep/L2_latN3_f010_D0_pairs.npz` (from the L2 floor sweep, Section 10). Run Sections 6, 9, and 10
 first, or Stage 1 will abort on the missing files.
 
 **Stage 1** assembles the sealed cohort and freezes D1 deployment configs on development (no sealed metrics):
@@ -252,7 +252,7 @@ python scripts/build_sealed_det_npz.py \
     --out outputs/det_out_v2/det_test.npz
 ```
 
-## 11. Figures and demo
+## 12. Figures and demo
 
 ```bash
 python scripts/make_main_results_figure.py \
@@ -280,7 +280,7 @@ Smoke tests (no UI):
 bash scripts/smoke_demo.sh
 ```
 
-## 12. Optional: learned pair-scorer (2×2 attribution)
+## 13. Optional: learned pair-scorer (2×2 attribution)
 
 Run only on the winning L1 policy to reproduce the attribution figure:
 
@@ -290,15 +290,15 @@ bash scripts/run_L1_D2_confirm.sh
 
 This trains/evaluates `eval_correspondence_D2a_crops.py` + `eval_correspondence_D2b_learned.py`.
 
-## 13. Provenance model
+## 14. Provenance model
 
 `sha256(det_dev.npz)` is embedded in every downstream artifact. The sealed path adds an external anchor:
 assembled `det_test.npz` is verified against manifest-recorded source hashes before any sealed metric is
 produced. See `scripts/make_integration_manifest.py` for a full integration manifest after freezing.
 
-## 14. Legacy FROC sealed path
+## 15. Legacy FROC sealed path
 
 An earlier detector-only sealed evaluator exists (`scripts/eval_sealed_test.py`) for the
 `train_detector → evaluate_detector → freeze_detector` FROC pipeline. The **reported headline result** uses
-the correspondence path (Sections 8-10) instead. Keep `eval_sealed_test.py` for completeness if you need the
+the correspondence path (Sections 9-11) instead. Keep `eval_sealed_test.py` for completeness if you need the
 original FROC confirmatory pass.
