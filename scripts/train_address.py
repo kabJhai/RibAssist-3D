@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Kabila Haile Soboka
 """RibAssist 3D addressing model (localization engine): from a CT-derived, fracture-centered
 crop plus the candidate's 2D coordinates (detector-provided; spine-relative horizontally),
 predict side (L/R), rib number (1-12), and normalized along-rib position s.

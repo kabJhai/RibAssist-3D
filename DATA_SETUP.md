@@ -49,7 +49,11 @@ the Zenodo record(s) you used, link to CC BY-NC 4.0, and note any changes to der
 ## 2. RibSeg v2 (rib segmentation + centerlines)
 
 **Project:** [M3DV/RibSeg](https://github.com/M3DV/RibSeg)  
-**License:** [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0) (SPDX: `Apache-2.0`)
+**License:** The RibSeg repository distributes software and related materials under the
+[Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0) (SPDX: `Apache-2.0`).
+Source CT images originate from RibFrac and remain subject to RibFrac's terms. Review the RibSeg
+repository notices and upstream dataset conditions before redistributing annotations or derived
+artifacts.
 
 Download (Google Drive links from the RibSeg repo):
 

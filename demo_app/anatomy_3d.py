@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Kabila Haile Soboka
 """3D rib anatomy for the case map and finding review."""
 from __future__ import annotations
 

@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Kabila Haile Soboka
 """RibAssist 3D END-TO-END DEMO figures on the SEALED cohort — presentation-ready, FAIL-CLOSED, no retraining.
 
 Replays the FROZEN L2 deployment policy on the sealed pair graph to recover the EXACT committed AP<->lateral

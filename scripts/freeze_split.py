@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Kabila Haile Soboka
 """Freeze a fresh, UNTOUCHED internal test slice from the labeled TRAINING cohort, before
 any results are examined. Assignment is deterministic (hash of case id) — it never looks at
 labels, images, or performance, so the held-out set cannot be contaminated by peeking.

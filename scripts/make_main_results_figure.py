@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Kabila Haile Soboka
 """RibAssist 3D MAIN RESULTS figure — sealed frozen-vs-L2, operational outcome + candidate-graph mechanism.
 
 Reads the four sealed JSONs (frozen/L2 x D0/D1) and renders one publication figure as SMALL MULTIPLES — one

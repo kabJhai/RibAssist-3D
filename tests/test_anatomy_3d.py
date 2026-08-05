@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Kabila Haile Soboka
 """Tests for focal 3D fracture localization helpers."""
 from __future__ import annotations
 

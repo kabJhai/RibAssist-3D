@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Kabila Haile Soboka
 """Build the CT-derived, fracture-centered crop dataset for the RibAssist 3D addressing model
 (localization engine). For each annotated fracture, render AP + lateral DRRs once and save
 a fixed-size crop centered on the fracture's projected location in each view, with the

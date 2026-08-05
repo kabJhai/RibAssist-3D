@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Kabila Haile Soboka
 """RibAssist 3D CANONICAL RIB-LEVEL CONTEXT (schema ribassist-rib-level-2).
 
 Takes addressed detections (side, predicted rib level; along-rib s is recorded but EXPLORATORY and

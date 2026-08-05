@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Kabila Haile Soboka
 """STAGE L0.1 — LATERAL CALIBRATION + EXTRACTION AUDIT (read-only; no retraining).
 
 L0 established that the lateral head is the binding systems problem (~188 peaks/case, ~97.5% spurious) but

@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Kabila Haile Soboka
 """Orchestrate live per-case RibAssist 3D inference for the demo UI."""
 from __future__ import annotations
 

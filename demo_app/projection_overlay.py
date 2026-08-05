@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Kabila Haile Soboka
 """Project rib anatomy and finding markers onto AP/lateral views."""
 from __future__ import annotations
 

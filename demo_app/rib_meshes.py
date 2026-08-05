@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Kabila Haile Soboka
 """Per-rib anatomical meshes from segmentation (marching cubes)."""
 from __future__ import annotations
 

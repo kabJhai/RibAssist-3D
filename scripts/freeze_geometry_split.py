@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Kabila Haile Soboka
 """Freeze the deterministic ATLAS-BUILD / GEOMETRY-VALIDATION split for the reconstruction stage.
 
 Mirrors the detector discipline: one written-down, hash-based, label-blind split. The atlas is

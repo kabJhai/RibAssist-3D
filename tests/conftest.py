@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Kabila Haile Soboka
 """Pytest path setup for RibAssist 3D demo tests."""
 import sys
 from pathlib import Path

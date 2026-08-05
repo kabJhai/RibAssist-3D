@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Kabila Haile Soboka
 """Paired sealed-test comparison: frozen detector vs L2 detector, deterministic D1, fixed policy.
 
 Reads the two sealed D1 apply-policy JSONs (+ their sealed D0 JSONs for candidate-side diagnostics) and prints

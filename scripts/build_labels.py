@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Kabila Haile Soboka
 """Build the ground-truth 'fracture address' label table for the rib-fracture
 localization project, and resolve the anterior/lateral/posterior segment convention.
 

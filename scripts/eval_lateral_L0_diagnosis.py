@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Kabila Haile Soboka
 """STAGE L0 — LATERAL DETECTOR DIAGNOSIS (read-only; no retraining).
 
 The A->D2 program established that cross-view correspondence is not solvable at the pair-scoring layer on the

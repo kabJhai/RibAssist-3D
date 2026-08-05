@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Kabila Haile Soboka
 """Anatomy bounds, coordinate validation, and scene setup for 3D panel."""
 from __future__ import annotations
 

@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Kabila Haile Soboka
 """Link original addressing findings to L2 AP correspondence candidates."""
 from __future__ import annotations
 

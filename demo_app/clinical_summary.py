@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Kabila Haile Soboka
 """Case-level and finding-level clinical decision-support summaries."""
 from __future__ import annotations
 

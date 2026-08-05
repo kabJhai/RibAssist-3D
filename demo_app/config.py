@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Kabila Haile Soboka
 """Frozen paths and policies for the RibAssist 3D clinician demo."""
 from __future__ import annotations
 

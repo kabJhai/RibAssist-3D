@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Kabila Haile Soboka
 """Sealed L2 policy replay must reproduce exactly 15 matched@10mm."""
 from __future__ import annotations
 

@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Kabila Haile Soboka
 """RibAssist 3D detector (DEVELOPMENT harness) — per-view heatmap U-Nets over the CT-derived
 orthographic AP + lateral projections, trained on det_dev.npz ONLY.
 

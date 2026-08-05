@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Kabila Haile Soboka
 """Shared per-case rib-labeling convention, so the addressing dataset and the reconstruction atlas
 agree on what "R7" means. RAS-anchored, identical convention to build_rib_atlas.py:
   * side: +LR axis = patient Right; a rib is Right if its centroid LR >= the rib-cage LR midline (spine);

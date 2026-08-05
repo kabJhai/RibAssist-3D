@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Kabila Haile Soboka
 """Acceptance tests for 3D anatomy scene correctness."""
 from __future__ import annotations
 

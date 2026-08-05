@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Kabila Haile Soboka
 """Helpers so Streamlit/Plotly render mesh + scatter in the same coordinate frame."""
 from __future__ import annotations
 

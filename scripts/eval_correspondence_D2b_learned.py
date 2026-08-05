@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Kabila Haile Soboka
 """STAGE D2b — LEARNED cross-view pair-compatibility scorer, evaluated through D1's FROZEN operational
 3D-reconstruction scoreboard. Replaces ONLY D1's deterministic edge cost with a learned one; the candidate
 graph (D0), assignment-with-abstention, independent 5/10/15 mm geometric matching, false-3D@10 budget,

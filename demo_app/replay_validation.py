@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Kabila Haile Soboka
 """Sealed L2 policy replay validation (independent of UI)."""
 from __future__ import annotations
 

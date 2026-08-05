@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Kabila Haile Soboka
 """Tests for finding ↔ L2 AP linkage."""
 from demo_app.finding_linker import L2ApCandidate, link_findings_to_l2_ap
 

@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Kabila Haile Soboka
 """Build the VERSIONED RibAssist 3D integration manifest: one immutable JSON that pins every artifact and
 config value the end-to-end pipeline depends on, with cross-checked hashes, so a reviewer can prove the
 demo / sealed-test pipeline is exactly this set of frozen components and nothing drifted between them.

@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Kabila Haile Soboka
 """Protocol stage: SCORE the saved detector weights with the current evaluation code (no retraining).
 
 Pipeline: train_detector.py -> evaluate_detector.py -> freeze_detector.py -> eval_sealed_test.py.

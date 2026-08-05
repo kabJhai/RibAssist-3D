@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Kabila Haile Soboka
 """Train and SAVE a DEPLOYABLE RibAssist 3D addressing model on the DET-FRAME dataset.
 
 train_address.py only cross-validates (AP-vs-biplanar ablation) and saves nothing. For the end-to-end

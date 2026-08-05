@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Kabila Haile Soboka
 """INTEGRATION GATE: prove run_ribassist.py's fused candidate set is IDENTICAL to the established
 evaluation path (evaluate_detector.py / train_detector.eval_condition) on every validation case.
 

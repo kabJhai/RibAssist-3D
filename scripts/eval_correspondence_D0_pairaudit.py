@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Kabila Haile Soboka
 """STAGE D0 — CANDIDATE-PAIR DATA AUDIT + BROAD PAIR GRAPH for biplanar correspondence (no learned model).
 
 Stage C showed the frozen SI-only fusion matcher (train_detector.form_pairs — a one-to-one Hungarian

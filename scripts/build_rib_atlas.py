@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Kabila Haile Soboka
 """Build and FREEZE a patient-adapted rib-cage ATLAS from DEVELOPMENT rib centerlines (RibSeg v2).
 
 The atlas is a single MEAN rib-cage template in the RAS world-anatomical frame, normalized per cage

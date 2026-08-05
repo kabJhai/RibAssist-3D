@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Kabila Haile Soboka
 """STAGE D2a — APPEARANCE PAIR-DATASET extractor for the learned correspondence scorer (D2b).
 
 Builds the reproducible appearance + label dataset the D2 two-tower scorer trains on, WITHOUT touching the

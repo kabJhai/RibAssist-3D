@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Kabila Haile Soboka
 """STAGE D1 — DETERMINISTIC correspondence: one-to-one assignment WITH EXPLICIT ABSTENTION over a gate sweep,
 selected by OUT-OF-FOLD case-level configuration selection on the OPERATIONAL 3D-RECONSTRUCTION frontier.
 

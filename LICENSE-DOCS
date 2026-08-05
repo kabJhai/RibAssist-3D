@@ -16,5 +16,5 @@ Full license text: https://creativecommons.org/licenses/by/4.0/legalcode
 
 This license does not apply to:
 - source code (see LICENSE, Apache-2.0)
-- trained model checkpoints (see MODEL_LICENSE.md; RibFrac-derived weights are CC BY-NC 4.0)
+- trained model checkpoints (see MODEL_TERMS.md; RibFrac-derived weights are CC BY-NC 4.0)
 - RibFrac, RibSeg v2, or any other third-party dataset or asset (RibFrac: CC BY-NC 4.0; RibSeg: Apache-2.0)

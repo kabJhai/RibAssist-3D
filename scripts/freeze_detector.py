@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Kabila Haile Soboka
 """Freeze the detector by PROMOTING the exact selected development artifacts — no retraining.
 
 An MPS rerun would not reproduce bit-identical weights, so freezing copies and VERIFIES the

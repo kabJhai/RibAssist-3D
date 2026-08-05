@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Kabila Haile Soboka
 """Det-frame addressing dataset for the DEPLOYABLE RibAssist 3D addressing model.
 
 The original address_dataset.npz (extract_crops.py) lives in a DIFFERENT projection frame than the

@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Kabila Haile Soboka
 """L2 detector peaks, pair graph, frozen D1 policy, and 3D back-projection."""
 from __future__ import annotations
 

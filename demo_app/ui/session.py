@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Kabila Haile Soboka
 """Session state for the three-stage clinical workflow."""
 from __future__ import annotations
 

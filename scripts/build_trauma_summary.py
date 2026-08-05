@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Kabila Haile Soboka
 """RibAssist 3D structured rib-trauma SUMMARY from the canonical rib-level context (schema
 ribassist-rib-level-2). Deterministic rendering of reconstruct_3d.py's per-case reconstruction.json
 (discrete pattern + review cues + quality flags) into a human-readable summary + a machine-readable

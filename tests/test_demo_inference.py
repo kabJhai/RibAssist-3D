@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Kabila Haile Soboka
 """Smoke test: one-case live inference without Streamlit."""
 from __future__ import annotations
 

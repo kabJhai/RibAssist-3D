@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Kabila Haile Soboka
 """Detector dataset for RibAssist 3D (full-image fracture detection stage).
 
 Renders each case's full AP and lateral CT-DERIVED ORTHOGRAPHIC LINE-INTEGRAL ATTENUATION

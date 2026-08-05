@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Kabila Haile Soboka
 """Rib-region AUXILIARY training target for the Phase-2 multi-task detector — a TRAINING-ONLY
 side-car for det_dev.npz, aligned to its EXACT images via each case's stored ap_geo/lat_geo (the
 frozen det_dev.npz is left byte-identical; the sealed test is untouched; the mask is never an

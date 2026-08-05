@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Kabila Haile Soboka
 """Assemble the SEALED-TEST detector dataset into the det_dev.npz schema, provenance-verified.
 
 The sealed cohort ships split as det_test_inputs.npz (images + geometry) + det_test_gt.npz (footprints),

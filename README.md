@@ -57,7 +57,8 @@ repository root/
 ├── demo_app/                     # demo app package (viewers, 3D scene, pipeline, UI)
 ├── LICENSE                       # Apache-2.0 (source code)
 ├── LICENSE-DOCS                  # CC BY 4.0 (documentation and figures)
-├── MODEL_LICENSE.md              # provisional checkpoint terms
+├── NOTICE                        # attribution and third-party notices
+├── MODEL_TERMS.md                # checkpoint compliance (weights not distributed)
 ├── DISCLAIMER.md                 # medical disclaimer
 ├── frozen_split.json             # sealed cohort case IDs (no labels)
 ├── geometry_split.json           # atlas build/val case IDs (no labels)
@@ -210,13 +211,12 @@ Original source code is licensed under the [Apache License 2.0](LICENSE) (SPDX: 
 
 Original documentation and figures are licensed under [CC BY 4.0](LICENSE-DOCS), unless otherwise noted.
 
-Trained model checkpoints are **not** licensed under Apache-2.0. See
-[MODEL_LICENSE.md](MODEL_LICENSE.md). Weights trained on RibFrac are subject to that
+Trained model checkpoints are **not** licensed under Apache-2.0 and are **not** committed to this
+repository. See [MODEL_TERMS.md](MODEL_TERMS.md). Weights trained on RibFrac are subject to that
 dataset's **CC BY-NC 4.0** terms (non-commercial use, required attribution).
 
 RibFrac, RibSeg v2, and all other third-party datasets are **not** included in this
-repository. **RibFrac** is CC BY-NC 4.0; **RibSeg v2** is Apache-2.0. See the Data section
-and `DATA_SETUP.md` for download links.
+repository. **RibFrac** is CC BY-NC 4.0. For RibSeg, see the Data section and `DATA_SETUP.md`.
 
 RibAssist 3D is a research proof of concept, not a medical device, and must not be used for diagnosis or patient
 care.
@@ -254,7 +254,7 @@ Info CSVs (`ribfrac-train-info-*.csv`, `ribfrac-val-info.csv`) map `public_id` t
 
 RibAssist 3D uses RibFrac-derived projections and labels for research only. Trained checkpoints
 are **not** Apache-licensed; any redistribution must comply with CC BY-NC 4.0. See
-[MODEL_LICENSE.md](MODEL_LICENSE.md).
+[MODEL_TERMS.md](MODEL_TERMS.md).
 
 When publishing work that uses RibFrac, cite the MICCAI 2020 RibFrac challenge and the specific
 Zenodo records you downloaded, in addition to this repository.
@@ -263,11 +263,16 @@ Zenodo records you downloaded, in addition to this repository.
 
 Rib segmentation and centerline annotations used for 3D anatomy in the demo and evaluation.
 
-**License:** [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0) (SPDX: `Apache-2.0`)
+**License:** The RibSeg repository distributes software and related materials under the
+[Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0) (SPDX: `Apache-2.0`).
+Source CT images originate from RibFrac and remain subject to RibFrac's terms. Review the RibSeg
+repository notices and upstream dataset conditions before redistributing annotations or derived
+artifacts.
 
-- You may use and redistribute RibSeg subject to the Apache-2.0 terms (include license copy,
+- You may use RibSeg repository materials subject to Apache-2.0 (include the license copy,
   state changes, retain notices).
-- RibSeg itself is **not** non-commercial; the **RibFrac** NC terms still apply to models and
-  artifacts trained on RibFrac-derived data (see above).
+- The RibSeg repository's Apache-2.0 license does **not** itself impose a noncommercial
+  restriction. **RibFrac** NC terms still apply to models and artifacts trained on
+  RibFrac-derived data (see above).
 
 Download from the RibSeg project; do not commit RibSeg files to this repository.

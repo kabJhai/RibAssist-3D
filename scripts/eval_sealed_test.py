@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Kabila Haile Soboka
 """RibAssist 3D SEALED-TEST evaluator — the ONE confirmatory pass. Runs the FROZEN detector on the
 sealed test cohort exactly once, using the EXACT frozen learning procedure, frozen FROC grids,
 and frozen per-condition operating thresholds.

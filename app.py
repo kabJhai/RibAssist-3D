@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Kabila Haile Soboka
 """Streamlit entry point for the RibAssist 3D review workflow."""
 from __future__ import annotations
 

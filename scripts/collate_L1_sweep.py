@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Kabila Haile Soboka
 """Collate the L1 extraction-policy correspondence sweep into one comparison table.
 
 Reads each policy's D0 (pair graph) + D1 (deterministic operational frontier) JSON from --sweep-dir and prints,

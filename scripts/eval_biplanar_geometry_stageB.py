@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Kabila Haile Soboka
 """STAGE B — PREDICTED centers + ORACLE correspondence. A DEVELOPMENT LOCALIZATION DIAGNOSTIC on the
 detector-validation split (NOT an unbiased detector-generalization estimate — see the bias note below).
 

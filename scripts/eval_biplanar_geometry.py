@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Kabila Haile Soboka
 """STAGE A of the biplanar 3D-reconstruction test — the geometry gate for the central RibAssist 3D claim
 (a fracture seen in both orthographic projections can be triangulated to a 3D location). NO learned model
 and NO detector: pure orthographic back-projection, scored against GT geometry in WORLD millimetres.

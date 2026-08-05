@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Kabila Haile Soboka
 """Bounded, DEVELOPMENT-ONLY calibration of the biplanar fusion association layer — NO retraining,
 NO new seed, NO sealed-test access. The detector weights are FIXED; only the unmatched-lateral score
 gate (lat_gate) of the fusion candidate set is swept.

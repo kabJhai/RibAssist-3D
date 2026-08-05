@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Kabila Haile Soboka
 """STAGE C — PREDICTED centers + DEPLOYABLE correspondence, through the EXACT FROZEN FUSION PATH.
 
 Stage A: the projection geometry supports accurate 3D reconstruction (oracle centers + oracle pairing).

@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Kabila Haile Soboka
 """RibAssist 3D end-to-end INFERENCE glue: one case, image-only, through the frozen champion path.
 
     AP/lat projections (det_dev images ONLY — never CT/RibSeg/GT/labels)

@@ -2,7 +2,7 @@
 #
 # TRACK (intended for release):
 #   scripts/ (full retrain + sealed eval + demo; see "Legacy/internal scripts" below for exclusions)
-#   LICENSE, LICENSE-DOCS, MODEL_LICENSE.md, DISCLAIMER.md, README.md
+#   LICENSE, LICENSE-DOCS, MODEL_TERMS.md, DISCLAIMER.md, README.md, NOTICE
 #   requirements.txt, requirements-demo.txt, pyproject.toml
 #   figures/ (paper SVGs, main_results.png, ribassist_demo.gif only)
 #   frozen_split.json, split_manifest.json
@@ -115,7 +115,7 @@ figures/*
 # --- Internal documentation (not ready for public release) ---
 *.md
 !README.md
-!MODEL_LICENSE.md
+!MODEL_TERMS.md
 !DISCLAIMER.md
 !DATA_SETUP.md
 !REPRODUCE.md

@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Kabila Haile Soboka
 """STAGE L2 — LATERAL-SPECIFIC RETRAINING (hard-negative mining + positive-branch strengthening).
 
 The L0 -> L1 -> D2 program closed the pair-scoring correspondence family on the current detections: even on the

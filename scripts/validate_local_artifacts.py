@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Kabila Haile Soboka
 """Validate published split JSONs and optional local artifact hashes.
 
 The repository ships case-id splits only (no ground-truth rows). After you

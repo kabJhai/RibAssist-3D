@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Kabila Haile Soboka
 """END-TO-END addressing DEVELOPMENT INTEGRATION DIAGNOSTIC (NOT an unbiased generalization estimate).
 
 Prior addressing metrics were measured on crops centered at GROUND-TRUTH fracture centers. Deployment
