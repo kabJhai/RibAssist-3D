@@ -1,10 +1,11 @@
 [project]
 name = "ribassist"
 version = "0.1.0"
-description = "RibAssist 3D: biplanar rib-fracture localization and clinician-review demo"
+description = "RibAssist 3D: biplanar rib-fracture localization research and sealed evaluation"
 requires-python = ">=3.10"
 readme = "README.md"
 license = "Apache-2.0"
 
-[tool.setuptools.packages.find]
-include = ["demo_app*"]
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_validate_local_artifacts.py"]

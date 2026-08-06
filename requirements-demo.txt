@@ -1,8 +1,0 @@
--r requirements.txt
-
-# Streamlit clinician-review demo for RibAssist 3D (app.py); requires Python >=3.10
-streamlit>=1.51
-plotly>=5.18
-Pillow>=9.0
-streamlit-plotly-events>=0.0.6
-watchdog>=3.0

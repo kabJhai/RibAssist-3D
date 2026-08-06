@@ -4,13 +4,11 @@
 
 RibAssist 3D is an end-to-end research and proof-of-concept review-assistance system for highlighting suspected rib fractures in AP and lateral CT-derived projections, assigning predicted side and rib level, and selectively localizing sufficiently confident findings on interactive 3D rib anatomy. When cross-view correspondence is uncertain, the system abstains from producing a 3D point while preserving the original detection and available anatomical addressing for human review.
 
-The project combines staged failure analysis, detector retraining, frozen-policy evaluation, reproducibility checks, and an interactive clinician-review workflow.
+The project combines staged failure analysis, detector retraining, frozen-policy evaluation, and reproducibility checks.
 
 > **Sealed-test result:** under a protocol frozen before opening the 55-case test cohort, the retrained lateral detector reconstructed **15 of 601 fractures within 10 mm** at **0.436 false 3D points per case**, compared with zero reconstructions from the original detector under its frozen policy satisfying the same false-output budget. Case-bootstrap recall was **2.50% (95% CI: 0.69%–4.48%)**.
 >
 > This is a directional research proof of concept, not a diagnostic or deployable clinical system.
-
-![Interactive RibAssist demo](figures/ribassist_demo.gif)
 
 - **Paper:** [RibAssist 3D: Biplanar 3D Rib-Fracture Reconstruction from CT-Derived Projections](paper/RibAssist_3D.pdf)
 - **ORCID:** [0009-0008-6740-3214](https://orcid.org/0009-0008-6740-3214)
@@ -51,50 +49,22 @@ Even when cross-view correspondence is too uncertain for 3D reconstruction, the 
 
 The 3D layer is therefore **additive**. An abstention means the system declines to make an unreliable 3D localization claim; it does not remove the underlying fracture detection or rib-level information.
 
-The current evidence supports RibAssist 3D as a workflow proof of concept for fracture highlighting, anatomical organization, and selective localization. It does not establish improved diagnostic accuracy, reduced reading time, or clinical benefit, because those outcomes would require a clinician reader study.
-
-## Interactive demo
-
-The demo presents RibAssist 3D as an assistive review workflow. Detection remains available for every reported finding, and rib addressing is shown where produced by the addressing model, while 3D localization is added only when a cross-view match satisfies the frozen confidence policy.
-
-> Both paths run the trained models, so they require the datasets and the pretrained checkpoints, which are prepared separately and are **not** committed to the repository. Paths such as `outputs/…` and `data/…` in the commands below refer to those local artifacts.
-
-**Streamlit clinician-review app** (full, model-backed):
-
-```bash
-pip install -r requirements-demo.txt
-streamlit run app.py
-```
-
-A three-stage workflow:
-
-1. case overview with interactive 3D rib anatomy;
-2. per-finding review with AP, lateral, and focused 3D evidence;
-3. case summary with reviewer decisions and localization status.
-
-Detection and addressing confidence, cross-view status, and accept / needs-review / reject actions are shown throughout.
-
-**Static self-contained review page** (no server): generate a single HTML file with real model outputs.
-
-```bash
-python scripts/export_review_site.py \
-    --champion-run outputs/detector_dev_scratch_c32_both_gated \
-    --address-model outputs/addressing_model_ap_nopos \
-    --data outputs/det_out_v2/det_test.npz \
-    --pairs-npz outputs/sealed/L2_sealed_D0_pairs.npz --policy outputs/sealed/L2_policy.json \
-    --image-dirs data/ribfrac_train data/ribfrac --seg-dir data/ribseg/ribseg_v2/seg --cl-dir data/ribseg/ribseg_v2/cl \
-    --expected-data-sha256 <det_test sha> \
-    --template scripts/ribassist_review_template.html --out outputs/ribassist_review.html
-```
-
-In both, a detection is **never** removed because the 3D correspondence abstains; it is retained with "3D localization unavailable, manual review recommended."
-
-Model localization status and reviewer decisions are separate concepts in the interface:
+Model localization status and reviewer decisions are separate concepts in the review interface:
 
 - **Localized:** the model committed a cross-view pair and emitted a 3D point.
 - **Candidate:** a compatible pair exists, but confidence was insufficient to commit.
 - **Rib-level only:** a detection and anatomical address remain available without a reliable 3D point.
 - **Accepted / Needs review / Rejected:** human-review decisions recorded in the interface.
+
+The current evidence supports RibAssist 3D as a workflow proof of concept for fracture highlighting, anatomical organization, and selective localization. It does not establish improved diagnostic accuracy, reduced reading time, or clinical benefit, because those outcomes would require a clinician reader study.
+
+## Clinician-Review Demo
+
+The project includes a clinician-review interface used to demonstrate the assistive workflow described in the paper.
+The demo source and trained checkpoints are not distributed in this repository.
+Screenshots and workflow documentation are provided to illustrate the interface and the system's model-localized, candidate, and rib-level-only review states.
+
+![Clinician-review interface (illustration)](figures/ribassist_demo.gif)
 
 ![Pipeline architecture](figures/fig_architecture.svg)
 
@@ -102,8 +72,6 @@ Model localization status and reviewer decisions are separate concepts in the in
 
 ```
 RibAssist-3D/
-├── app.py                        # Streamlit clinician-review demo (entry point)
-├── demo_app/                     # demo app package (viewers, 3D scene, pipeline, UI)
 ├── scripts/                      # pipeline, evaluation, and figure scripts (see below)
 ├── figures/                      # architecture / bottleneck / results / attribution figures
 ├── tests/                        # unit tests
@@ -118,20 +86,18 @@ so the main-results figure regenerates from a fresh clone without any download.
 `run_ribassist.py` (detection + addressing inference); `eval_biplanar_geometry*.py` (Stages A-C),
 `eval_correspondence_D0/D1/D2*.py` (candidate graph, deterministic and learned correspondence),
 `eval_lateral_L0*/L01*.py` (lateral diagnosis and calibration); `build_sealed_det_npz.py` and
-`run_sealed_stage{1,2}*.sh` (sealed evaluation); `make_main_results_figure.py`, `make_demo_figures.py`,
-`export_review_site.py` (figures and demo).
+`run_sealed_stage{1,2}*.sh` (sealed evaluation); `make_main_results_figure.py`, `make_schematic_figures.py`.
 
 ## Quickstart
 
 Requires Python 3.10+, PyTorch (Apple MPS or CUDA for training; CPU for evaluation), NumPy, SciPy, nibabel,
-scikit-learn, and matplotlib. The demo additionally needs the packages in `requirements-demo.txt`.
+scikit-learn, and matplotlib.
 
 The datasets and model checkpoints are prepared separately and are **not** committed (they exceed Git limits and
 include licensed derived data). The headline sealed-evaluation result JSONs **are** included under
 `outputs/sealed/`, so the main-results figure regenerates directly from the repository with no download. To obtain
 the datasets and reproduce the full pipeline, follow [`DATA_SETUP.md`](DATA_SETUP.md) (licensed data) and
-[`REPRODUCE.md`](REPRODUCE.md) (end-to-end steps, hashes, and the sealed pass). Once the artifacts are in place,
-launch the demo with `streamlit run app.py`.
+[`REPRODUCE.md`](REPRODUCE.md) (end-to-end steps, hashes, and the sealed pass).
 
 ## Method (one paragraph)
 
@@ -219,8 +185,6 @@ A compact map of the techniques this project exercises end to end:
 - Assignment with abstention
 - Case-level cross-validation and sealed evaluation
 - Artifact provenance and reproducibility
-- Interactive Streamlit and Plotly visualization
-- Human-in-the-loop healthcare UX
 
 ## Status, limitations, and disclaimer
 

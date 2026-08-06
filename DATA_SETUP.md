@@ -83,7 +83,7 @@ After data and checkpoints are in place:
 
 ```bash
 python scripts/validate_local_artifacts.py
-python scripts/validate_local_artifacts.py --demo --strict
+python scripts/validate_local_artifacts.py --all --strict
 ```
 
-See `REPRODUCE.md` for the sealed evaluation and demo workflow.
+See `REPRODUCE.md` for the sealed evaluation workflow.

@@ -1,7 +1,7 @@
 # RibAssist 3D: Reproducibility
 
-This document is the end-to-end path from **licensed third-party data** to the **sealed headline result**
-and the **Streamlit demo**. The repository ships all scripts, published case-id splits, and headline sealed
+This document is the end-to-end path from **licensed third-party data** to the **sealed headline result**.
+The repository ships all scripts, published case-id splits, and headline sealed
 JSONs. It does **not** ship RibFrac/RibSeg volumes, derived `.npz` tensors, or model checkpoints. Obtain
 those under their licenses ([DATA_SETUP.md](DATA_SETUP.md)) and run the steps below.
 
@@ -29,7 +29,7 @@ false-3D/case, case-bootstrap 95% CI 0.69%-4.48%. Everything below reproduces th
 
 | In git | You prepare locally |
 |---|---|
-| All `scripts/` for retrain + sealed eval + demo | RibFrac CT + labels, RibSeg seg/cl |
+| All `scripts/` for retrain + sealed eval | RibFrac CT + labels, RibSeg seg/cl |
 | `frozen_split.json`, `geometry_split.json`, `split_manifest.json` | `outputs/det_out_v2/*.npz`, checkpoints |
 | `outputs/sealed/*.json` (headline sealed results) | Rib atlas, addressing weights, sweep dirs |
 
@@ -46,14 +46,13 @@ python scripts/validate_local_artifacts.py
 After you finish the pipeline, verify your local artifacts match the published fingerprints:
 
 ```bash
-python scripts/validate_local_artifacts.py --demo --strict
 python scripts/validate_local_artifacts.py --all --strict
 ```
 
 ## 3. Environment
 
 - Python **3.10+** (see `pyproject.toml`), packages in `requirements.txt` (NumPy, SciPy, PyTorch, nibabel,
-  scikit-learn, matplotlib). Demo: `requirements-demo.txt` (Streamlit, Plotly).
+  scikit-learn, matplotlib).
 - Detector training uses Apple MPS or CUDA; evaluation and figure generation are CPU-only.
 - Data layout after [DATA_SETUP.md](DATA_SETUP.md):
   - `data/ribfrac_train/`, `data/ribfrac/`: RibFrac CT + labels
@@ -61,7 +60,7 @@ python scripts/validate_local_artifacts.py --all --strict
 
 ## 4. Pinned artifact inventory
 
-These are the **expected sha256 digests** once you complete the pipeline. The demo and sealed-evaluation
+These are the **expected sha256 digests** once you complete the pipeline. The sealed-evaluation
 artifacts (assembled `det_test.npz`, both detector checkpoints, the addressing model, and the sealed policy /
 pairs files) are pinned in `split_manifest.json` and checked by `validate_local_artifacts.py`. The `det_dev.npz`
 and the two sealed source tensors (`det_test_inputs.npz`, `det_test_gt.npz`) are instead verified through
@@ -135,7 +134,7 @@ python scripts/freeze_detector.py \
 
 The gated run (`detector_dev_scratch_c32_both_gated`) is the **frozen head** for correspondence evaluation.
 
-## 7. Addressing model (demo + rib-level output)
+## 7. Addressing model
 
 Build detector-frame crops and train the addressing network:
 
@@ -158,7 +157,7 @@ python scripts/train_address_deploy.py \
     --out outputs/addressing_model_ap_nopos
 ```
 
-## 8. Rib atlas (3D demo context)
+## 8. Rib atlas
 
 Uses the published `geometry_split.json` for atlas build / val holdout:
 
@@ -171,8 +170,7 @@ python scripts/build_rib_atlas.py \
     --out outputs/rib_atlas_v1 --k 60
 ```
 
-Per-case reconstruction for the demo uses `scripts/reconstruct_3d.py` (called from `run_ribassist.py` /
-`demo_app/`).
+Optional per-case reconstruction JSON/HTML: `scripts/reconstruct_3d.py` (also invoked from `run_ribassist.py`).
 
 ## 9. Correspondence diagnostics (L0 → L1)
 
@@ -252,32 +250,13 @@ python scripts/build_sealed_det_npz.py \
     --out outputs/det_out_v2/det_test.npz
 ```
 
-## 12. Figures and demo
+## 12. Figures
 
 ```bash
 python scripts/make_main_results_figure.py \
     --sealed-dir outputs/sealed --out figures/main_results.png
 
-python scripts/make_demo_figures.py \
-    --detector-run outputs/detector_L2_lateral_hnm \
-    --data outputs/det_out_v2/det_test.npz \
-    --pairs-npz outputs/sealed/L2_sealed_D0_pairs.npz \
-    --policy outputs/sealed/L2_policy.json \
-    --sealed-d1-json outputs/sealed/L2_sealed_D1.json \
-    --image-dirs data/ribfrac_train data/ribfrac \
-    --seg-dir data/ribseg/ribseg_v2/seg \
-    --cl-dir data/ribseg/ribseg_v2/cl \
-    --expected-data-sha256 75c62ab5286dedbfd6e6d994f8b1ede6e969a9e505aaded43379f672fdb0514d \
-    --out-dir outputs/demo --overwrite
-
-pip install -r requirements-demo.txt
-streamlit run app.py
-```
-
-Smoke tests (no UI):
-
-```bash
-bash scripts/smoke_demo.sh
+python scripts/make_schematic_figures.py
 ```
 
 ## 13. Optional: learned pair-scorer (2×2 attribution)
