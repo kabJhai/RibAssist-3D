@@ -37,6 +37,6 @@
 <text x="104" y="476" font-size="15" font-weight="normal" fill="#555555" text-anchor="start">L2 retraining raises dual-view availability and first commits.</text>
 <text x="1066" y="464.0" font-size="15" font-weight="bold" fill="#e6550d" text-anchor="end">effective lever under tested methods</text>
 <rect x="40" y="520" width="1040" height="62" fill="#deebf7" stroke="#3182bd" stroke-width="1.6"/>
-<text x="560.0" y="548" font-size="18" font-weight="bold" fill="#3182bd" text-anchor="middle">Sealed test: recall@10 2.50% (15/601) at 0.436 false-3D/case; CI 0.69%-4.48%</text>
+<text x="560.0" y="548" font-size="18" font-weight="bold" fill="#3182bd" text-anchor="middle">Sealed test: commitment yield@10 2.50% (15/601) at 0.436 false-3D/case; CI 0.69%-4.48%</text>
 <text x="560.0" y="570" font-size="15" font-weight="normal" fill="#555555" text-anchor="middle">55 cases, 601 fractures; policy frozen on development</text>
 </svg>

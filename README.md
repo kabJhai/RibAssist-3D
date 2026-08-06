@@ -4,14 +4,31 @@
 
 RibAssist 3D is an end-to-end research and proof-of-concept review-assistance system for highlighting suspected rib fractures in AP and lateral CT-derived projections, assigning predicted side and rib level, and selectively localizing sufficiently confident findings on interactive 3D rib anatomy. When cross-view correspondence is uncertain, the system abstains from producing a 3D point while preserving the original detection and available anatomical addressing for human review.
 
+![RibAssist 3D in action — highlighted fractures, rib-level addressing, and selective 3D localization on interactive rib anatomy, with uncertain findings preserved for review](figures/ribassist_demo.gif)
+
 The project combines staged failure analysis, detector retraining, frozen-policy evaluation, and reproducibility checks.
 
-> **Sealed-test result:** under a protocol frozen before opening the 55-case test cohort, the retrained lateral detector reconstructed **15 of 601 fractures within 10 mm** at **0.436 false 3D points per case**, compared with zero reconstructions from the original detector under its frozen policy satisfying the same false-output budget. Case-bootstrap recall was **2.50% (95% CI: 0.69%–4.48%)**.
+> **Key results.** The biplanar geometry is exact, and given correct correspondence the localization is accurate (median **4.0 mm**, **88%** within 10 mm, **93.6%** rib-exact). On the sealed 55-case cohort a large share of fractures is recoverable (**61.1%** dual-view availability, **58.4%** candidate ceiling), and when the frozen policy commits a cross-view pair the 3D point is geometrically accurate (median **1.49 mm**, **93%** rib-exact). The evaluated reconstruction bottleneck is confidence-limited cross-view correspondence rather than geometry or conditional localization; rib addressing is a supporting workflow component that was not independently evaluated in this study. The terminal **end-to-end commitment yield is 2.50%** (15 of 601 fractures at 0.436 false 3D points per case; 95% CI 0.69%–4.48%), versus zero for the original detector under the same budget.
 >
 > This is a directional research proof of concept, not a diagnostic or deployable clinical system.
 
-- **Paper:** [RibAssist 3D: Biplanar 3D Rib-Fracture Reconstruction from CT-Derived Projections](paper/RibAssist_3D.pdf)
+- **Paper:** [RibAssist 3D: Biplanar Rib-Fracture Detection, Addressing, and Selective 3D Localization from CT-Derived Projections](paper/RibAssist_3D.pdf)
 - **ORCID:** [0009-0008-6740-3214](https://orcid.org/0009-0008-6740-3214)
+
+
+## Validated strengths
+
+Read as a decomposition rather than a single number, the study establishes several strong results:
+
+- **Exact geometry.** Orthographic back-projection and triangulation are exact (0.0 mm round-trip error).
+- **Accurate conditional localization.** Given correct correspondence, detector-predicted centers reconstruct to median 4.0 mm, with 88% within 10 mm and 93.6% rib-exact.
+- **Substantial candidate availability.** On the sealed cohort, 61.1% of fractures are dual-view available and 58.4% have a correct pair in the candidate graph.
+- **High conditional fidelity when committed.** Committed sealed points have median 1.49 mm error and 93% rib-exactness at 0.436 false 3D points per case.
+- **A reproducible bottleneck diagnosis.** Staged oracle-to-model swaps isolate confidence-limited cross-view correspondence as the effective operational bottleneck.
+- **A clean attribution.** A 2×2 factorial attributes the operational gain to lateral-detector quality; the learned pair-scorer does not beat detector confidence at the operating budget.
+- **A selective assistive workflow.** Detections and rib addressing persist for review even when 3D localization abstains.
+
+The end-to-end commitment yield (2.50%) is the *terminal* metric of this funnel, not a measure of any single component.
 
 
 ## What this project shows
@@ -26,13 +43,15 @@ The initial failure arose from cross-view correspondence operating on weak later
 
 **Main conclusion.** Geometry and detector localization were accurate when the correct cross-view observations were supplied. The operational failure occurred because the weak lateral detector produced low-confidence true observations within a noisy candidate graph. Candidate-field cleanup alone did not move the controlled-budget frontier; improving lateral-detector confidence did. Neither deterministic assignment nor learned local-appearance scoring produced meaningful controlled-budget recall on the frozen detections, whereas lateral retraining produced the first nonzero controlled-false-rate reconstructions, and the fixed-policy result transferred to the untouched sealed cohort.
 
-![Sealed frozen-vs-L2 result](figures/main_results.png)
+![Sealed-cohort reconstruction funnel: most fractures reach a recoverable candidate state, but few convert to controlled-budget 3D commitments](figures/main_results.png)
+
+The sealed result reads as a funnel: **61.1%** of fractures are dual-view available and **58.4%** have a correct pair in the candidate graph, but the controlled-budget assignment converts only **15 of 601** into correct 3D commitments. The large gap between candidate availability and committed yield *is* the finding, and it localizes the remaining problem to cross-view correspondence rather than to detection or geometry.
 
 The 2×2 factorial attributes the observed gain to the **detector intervention** rather than to either of the tested correspondence methods: the learned appearance scorer does not beat detector confidence at the operational budget.
 
 ![Detector by correspondence attribution](figures/fig_2x2_attribution.svg)
 
-**Reading the 2.5%.** The low recall means RibAssist 3D is not a comprehensive or deployable reconstructor. It does establish reproducible, geometrically accurate selective localization: the committed sealed-test points had a median matched distance of 1.49 mm and 93% rib-exactness. When 3D correspondence abstains, the underlying detection and rib-addressing outputs remain available for review.
+**Reading the reconstruction funnel.** This number is the *terminal* end-to-end commitment yield, i.e., the intersection of several selective gates (detection in both views, a correct pair in the candidate graph, survival of one-to-one assignment, confidence above the abstention threshold, and localization within tolerance). It is **not** geometry accuracy or conditional localization fidelity: a large share of fractures is recoverable (61.1% dual-view availability, 58.4% candidate ceiling), and committed points are geometrically accurate (median 1.49 mm, 93% rib-exact). Rib addressing is a supporting output whose standalone accuracy was not evaluated in this study. The low yield means RibAssist 3D is not yet a comprehensive or deployable reconstructor; the open problem is converting available candidates into confident cross-view commitments. When 3D correspondence abstains, the underlying detection and rib-addressing outputs remain available for review.
 
 ## Assistive use
 
@@ -58,6 +77,22 @@ Model localization status and reviewer decisions are separate concepts in the re
 
 The current evidence supports RibAssist 3D as a workflow proof of concept for fracture highlighting, anatomical organization, and selective localization. It does not establish improved diagnostic accuracy, reduced reading time, or clinical benefit, because those outcomes would require a clinician reader study.
 
+## Where it could fit clinically
+
+RibAssist 3D is intended as a **secondary-review and anatomical-organization tool for chest-trauma CT**, not an autonomous diagnostic system. A potential user is a radiologist, emergency physician, trauma surgeon, or other clinician reviewing a patient with suspected thoracic injury.
+
+**Potential workflow:** CT acquired → conventional CT review → RibAssist highlights suspected fractures and rib addresses, with selective 3D points → clinician confirms, rejects, or requests further review.
+
+**Potential applications:**
+
+- secondary fracture review, so subtle fractures are less likely to be overlooked;
+- rib-level documentation (side, rib number, multifocal injuries) for more consistent reporting;
+- structured injury summaries of trauma burden;
+- prioritization for specialist review where coverage is limited;
+- selective 3D orientation for high-confidence findings.
+
+**Not yet established.** These applications are hypothetical: no clinician reader study, workflow study, or patient-outcome evaluation has been performed. The evidence supports that these functions exist and that committed 3D points are accurate, not that they improve sensitivity, reporting time, treatment decisions, or patient care.
+
 ## Clinician-Review Demo
 
 The repository includes a Streamlit clinician-review app (`app.py`, `demo_app/`) that demonstrates the assistive workflow described in the paper. **No pretrained model checkpoints are distributed.** To run the demo you must train the models locally (Sections 5-11 in [`REPRODUCE.md`](REPRODUCE.md)) and point the app at **your** checkpoints and derived tensors under `outputs/`.
@@ -79,8 +114,6 @@ streamlit run app.py
 ```
 
 The workflow covers case overview with interactive 3D rib anatomy, per-finding review with AP, lateral, and focused 3D evidence, and case summary with reviewer decisions. A detection is **never** removed because 3D correspondence abstains; it is retained for manual review.
-
-![Clinician-review interface](figures/ribassist_demo.gif)
 
 ![Pipeline architecture](figures/fig_architecture.svg)
 
@@ -212,9 +245,9 @@ RibAssist 3D is a **research proof of concept**, not a medical device or clinica
 fracture-region highlighting, rib-level addressing, and selective 3D localization for high-confidence cross-view
 matches.
 
-The sealed result remains limited: recall was 2.5%, and only 6 of 55 cases produced at least one correct
-reconstruction. The cohort was small, contained no validated negative-scan safety evaluation, and used CT-derived
-simulated orthographic projections rather than independently acquired clinical radiographs.
+The sealed result remains limited: the end-to-end commitment yield was 2.5%, and only 6 of 55 cases produced at
+least one correct reconstruction. The cohort was small, contained no validated negative-scan safety evaluation, and
+used CT-derived simulated orthographic projections rather than independently acquired clinical radiographs.
 
 Within the tested detector and local-correspondence methods, lateral-detector availability and confidence were the
 effective lever. The next research directions are stronger lateral detection, global anatomical correspondence
@@ -243,7 +276,7 @@ If you use RibAssist 3D, please cite this repository together with the RibFrac a
 
 ```bibtex
 @article{soboka2026ribassist,
-  title   = {RibAssist 3D: Biplanar 3D Rib-Fracture Reconstruction from CT-Derived Projections},
+  title   = {RibAssist 3D: Biplanar Rib-Fracture Detection, Addressing, and Selective 3D Localization from CT-Derived Projections},
   author  = {Soboka, Kabila Haile},
   year    = {2026}
 }
