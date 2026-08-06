@@ -79,7 +79,11 @@ data/ribseg/ribseg_v2/cl/
 
 ## 3. Validate local layout
 
-After data and checkpoints are in place:
+Obtain the datasets above, then **train the models** and build the derived tensors documented in
+[`REPRODUCE.md`](REPRODUCE.md) (Sections 5-11). The Streamlit demo loads **your locally trained checkpoints**;
+none are shipped with this repository.
+
+After data, training outputs, and checkpoints are in place:
 
 ```bash
 python scripts/validate_local_artifacts.py

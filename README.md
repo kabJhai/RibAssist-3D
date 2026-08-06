@@ -60,9 +60,17 @@ The current evidence supports RibAssist 3D as a workflow proof of concept for fr
 
 ## Clinician-Review Demo
 
-The repository includes a Streamlit clinician-review app (`app.py`, `demo_app/`) that demonstrates the assistive workflow described in the paper. It runs the trained models on your local copies of the RibFrac/RibSeg data and checkpoints documented in [`DATA_SETUP.md`](DATA_SETUP.md); those artifacts are **not** committed to git.
+The repository includes a Streamlit clinician-review app (`app.py`, `demo_app/`) that demonstrates the assistive workflow described in the paper. **No pretrained model checkpoints are distributed.** To run the demo you must train the models locally (Sections 5-11 in [`REPRODUCE.md`](REPRODUCE.md)) and point the app at **your** checkpoints and derived tensors under `outputs/`.
 
-After local artifacts are in place:
+The demo expects locally trained artifacts at the paths in `demo_app/config.py`, including:
+
+- `outputs/detector_dev_scratch_c32_both_gated/` (champion detector; Section 6)
+- `outputs/addressing_model_ap_nopos/` (addressing model; Section 7)
+- `outputs/detector_L2_lateral_hnm/` (L2 lateral detector; Section 10)
+- `outputs/det_out_v2/det_test.npz` and `outputs/sealed/L2_sealed_D0_pairs.npz` (Section 11)
+- RibFrac/RibSeg data under `data/` ([`DATA_SETUP.md`](DATA_SETUP.md))
+
+After training and placing artifacts:
 
 ```bash
 pip install -r requirements-demo.txt
@@ -108,8 +116,8 @@ The datasets and model checkpoints are prepared separately and are **not** commi
 include licensed derived data). The headline sealed-evaluation result JSONs **are** included under
 `outputs/sealed/`, so the main-results figure regenerates directly from the repository with no download. To obtain
 the datasets and reproduce the full pipeline, follow [`DATA_SETUP.md`](DATA_SETUP.md) (licensed data) and
-[`REPRODUCE.md`](REPRODUCE.md) (end-to-end steps, hashes, and the sealed pass). With local artifacts in place,
-launch the demo with `streamlit run app.py`.
+[`REPRODUCE.md`](REPRODUCE.md) (end-to-end steps, hashes, and the sealed pass). The Streamlit demo is **not**
+turnkey: train the models (Sections 5-11), then launch with `streamlit run app.py`.
 
 ## Method (one paragraph)
 

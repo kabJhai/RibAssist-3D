@@ -29,9 +29,10 @@ false-3D/case, case-bootstrap 95% CI 0.69%-4.48%. Everything below reproduces th
 
 | In git | You prepare locally |
 |---|---|
-| All `scripts/` for retrain + sealed eval + demo (`app.py`, `demo_app/`) | RibFrac CT + labels, RibSeg seg/cl |
-| `frozen_split.json`, `geometry_split.json`, `split_manifest.json` | `outputs/det_out_v2/*.npz`, checkpoints |
-| `outputs/sealed/*.json` (headline sealed results) | Rib atlas, addressing weights, sweep dirs |
+| All `scripts/` for retrain + sealed eval | RibFrac CT + labels, RibSeg seg/cl |
+| `app.py`, `demo_app/` (demo UI; loads **your** trained checkpoints) | Trained checkpoints under `outputs/` (Sections 6-10), `outputs/det_out_v2/*.npz`, sealed pairs NPZ |
+| `frozen_split.json`, `geometry_split.json`, `split_manifest.json` | (use published splits as-is) |
+| `outputs/sealed/*.json` (headline sealed results) | Rib atlas (`outputs/rib_atlas_v1/`), L1 sweep dirs |
 
 **Use the published splits as-is** (`frozen_split.json` for the sealed test cohort; `geometry_split.json` for
 the atlas holdout). Regenerating splits with `freeze_split.py` / `freeze_geometry_split.py` is optional and
@@ -252,6 +253,9 @@ python scripts/build_sealed_det_npz.py \
 
 ## 12. Figures and demo
 
+The Streamlit demo requires the **trained checkpoints and `.npz` files you produced above**, not pretrained
+weights from the repository. Complete Sections 5-11 first.
+
 ```bash
 python scripts/make_main_results_figure.py \
     --sealed-dir outputs/sealed --out figures/main_results.png
@@ -262,6 +266,9 @@ pip install -r requirements-demo.txt
 python scripts/validate_local_artifacts.py --demo --strict
 streamlit run app.py
 ```
+
+Expected checkpoint paths are listed in `demo_app/config.py`. `--demo --strict` verifies that your trained
+artifacts match the published fingerprints in `split_manifest.json`.
 
 Smoke test (no UI):
 
