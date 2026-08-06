@@ -13,6 +13,7 @@ The project combines staged failure analysis, detector retraining, frozen-policy
 ![Interactive RibAssist demo](figures/ribassist_demo.gif)
 
 - **Paper:** [RibAssist 3D: Biplanar 3D Rib-Fracture Reconstruction from CT-Derived Projections](paper/RibAssist_3D.pdf)
+- **ORCID:** [0009-0008-6740-3214](https://orcid.org/0009-0008-6740-3214)
 
 
 ## What this project shows

@@ -9,8 +9,7 @@ be a dual-scale error). Two groups: the operational outcome (recall@10 at <=1 fa
 candidate-graph mechanism that produced it (lateral compatible recall, dual-view availability, candidate
 ceiling@10). Numbers come from the JSONs, not hardcoded, so the figure is reproducible and provenance-linked.
 
-Colors: frozen=#2a78d6 (blue), L2=#eb6834 (orange) — a validator-passing categorical pair (avoids status green);
-identity is carried by a legend + direct value labels on every bar, never color alone.
+Colors: muted blue (frozen) and orange (L2), ColorBrewer-style; identity via legend and bar labels.
 
 Usage (from RibAssist 3D ROOT):
   python scripts/make_main_results_figure.py --sealed-dir outputs/sealed --out outputs/figures/main_results.png
@@ -23,7 +22,23 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
-FROZEN_C = "#2a78d6"; L2_C = "#eb6834"; INK = "#0b0b0b"; INK2 = "#52514e"; GRID = "#e6e6e3"
+plt.rcParams.update(
+    {
+        "font.family": "sans-serif",
+        "font.sans-serif": ["Arial", "Helvetica", "DejaVu Sans"],
+        "font.size": 9,
+        "axes.linewidth": 0.8,
+        "axes.edgecolor": "black",
+        "figure.facecolor": "white",
+        "savefig.facecolor": "white",
+    }
+)
+
+INK = "#222222"
+INK2 = "#555555"
+GRID = "#dddddd"
+FROZEN_C = "#6baed6"
+L2_C = "#fd8d3c"
 
 
 def load(p): return json.loads(Path(p).read_text())
@@ -60,7 +75,7 @@ def main():
     for ax, (title, vF, vL, fmt, group, extra) in zip(axes, panels):
         vmax = max(vF, vL, extra.get("ci", [0, 0])[1] if "ci" in extra else 0) or 1.0
         top = vmax * 1.35 + 1e-9
-        bars = ax.bar([0, 1], [vF, vL], width=0.62, color=[FROZEN_C, L2_C], zorder=3)
+        bars = ax.bar([0, 1], [vF, vL], width=0.55, color=[FROZEN_C, L2_C], edgecolor=INK, linewidth=0.6, zorder=3)
         if "ci" in extra:
             lo, hi = extra["ci"]
             ax.errorbar([1], [vL], yerr=[[vL - lo], [hi - vL]], fmt="none", ecolor=INK2, elinewidth=1.4, capsize=4, zorder=4)
@@ -77,22 +92,26 @@ def main():
 
     fig.subplots_adjust(left=0.035, right=0.985, top=0.68, bottom=0.20, wspace=0.42)
     # title + group labels (well above the panel titles, which sit just over the axes at top=0.68)
-    fig.text(0.5, 0.955, "Sealed-test result — frozen detector → L2 retraining",
-             ha="center", fontsize=14, color=INK, fontweight="bold")
+    fig.text(0.5, 0.955, "Sealed test: frozen detector vs. L2 retraining",
+             ha="center", fontsize=12, color=INK, fontweight="bold")
     fig.text(0.5, 0.905, f"{ncase} sealed cases, {ngt} GT fractures · frozen policy, no test-set reselection",
              ha="center", fontsize=10, color=INK2)
     # group labels centered over their panel spans (panels 1–2 vs 3–5), with an underline rule
     ax12 = 0.035 + (0.985 - 0.035) * (2 / n) / 2
     ax345 = 0.035 + (0.985 - 0.035) * (2 / n + 3 / n) / 2
-    fig.text(ax12, 0.80, "OPERATIONAL OUTCOME", ha="center", fontsize=10, color=INK, fontweight="bold")
-    fig.text(ax345, 0.80, "CANDIDATE-GRAPH MECHANISM  (why it moved)", ha="center", fontsize=10, color=INK, fontweight="bold")
+    fig.text(ax12, 0.80, "Operational outcome", ha="center", fontsize=10, color=INK, fontweight="bold")
+    fig.text(ax345, 0.80, "Candidate-graph mechanism", ha="center", fontsize=10, color=INK, fontweight="bold")
     fig.add_artist(plt.Line2D([0.035, 0.035 + (0.985 - 0.035) * 2 / n - 0.02], [0.775, 0.775], color=GRID, lw=1.2))
     fig.add_artist(plt.Line2D([0.035 + (0.985 - 0.035) * 2 / n + 0.01, 0.985], [0.775, 0.775], color=GRID, lw=1.2))
     # legend (identity carried here AND on x-ticks — never color-alone)
     from matplotlib.patches import Patch
-    fig.legend([Patch(color=FROZEN_C), Patch(color=L2_C)],
-               ["frozen detector  (lat nms3/floor0.06, abstain policy)", "L2 detector  (lat nms3/floor0.10, gate30/geomean/u=0.417)"],
-               loc="lower center", ncol=2, frameon=False, fontsize=9.5, bbox_to_anchor=(0.5, 0.065))
+    fig.legend(
+        [Patch(facecolor=FROZEN_C, edgecolor=INK),
+         Patch(facecolor=L2_C, edgecolor=INK)],
+        ["Frozen detector (lat nms3/floor0.06, abstain policy)",
+         "L2 detector (lat nms3/floor0.10, gate30/geomean/u=0.417)"],
+        loc="lower center", ncol=1, frameon=False, fontsize=8.5, bbox_to_anchor=(0.5, 0.06),
+    )
     fig.text(0.5, 0.02, f"recall@10 case-bootstrap 95% CI {ciL} (excludes 0)   ·   data_sha {l21['data_sha256'][:12]}..",
              ha="center", fontsize=8, color=INK2)
     a.out.parent.mkdir(parents=True, exist_ok=True); fig.savefig(a.out, dpi=150, bbox_inches="tight"); plt.close(fig)
