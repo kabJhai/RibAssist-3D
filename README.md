@@ -2,7 +2,7 @@
 
 **Biplanar rib-fracture detection, anatomical addressing, and selective 3D localization.**
 
-RibAssist 3D is an end-to-end research and proof-of-concept review-assistance system for highlighting suspected rib fractures in AP and lateral CT-derived projections, assigning predicted side and rib level, and selectively localizing sufficiently confident findings on interactive 3D rib anatomy. When cross-view correspondence is uncertain, the system abstains from producing a 3D point while preserving the original detection and available anatomical addressing for human review.
+RibAssist 3D is a research proof-of-concept review-assistance system for highlighting suspected rib fractures in AP and lateral CT-derived projections, assigning predicted side and rib level, and selectively localizing sufficiently confident findings on interactive 3D rib anatomy. When cross-view correspondence is uncertain, the system abstains from producing a 3D point while preserving the original detection and available anatomical addressing for human review.
 
 ![RibAssist 3D in action — highlighted fractures, rib-level addressing, and selective 3D localization on interactive rib anatomy, with uncertain findings preserved for review](figures/ribassist_demo.gif)
 
@@ -275,9 +275,11 @@ Datasets are third-party and governed by their own licenses and terms; they are 
 If you use RibAssist 3D, please cite this repository together with the RibFrac and RibSeg datasets:
 
 ```bibtex
-@article{soboka2026ribassist,
-  title   = {RibAssist 3D: Biplanar Rib-Fracture Detection, Addressing, and Selective 3D Localization from CT-Derived Projections},
-  author  = {Soboka, Kabila Haile},
-  year    = {2026}
+@misc{soboka2026ribassist,
+  title        = {RibAssist 3D: Biplanar Rib-Fracture Detection, Addressing, and Selective 3D Localization from CT-Derived Projections},
+  author       = {Soboka, Kabila Haile},
+  year         = {2026},
+  howpublished = {Research proof of concept},
+  url          = {https://github.com/kabJhai/RibAssist-3D}
 }
 ```
