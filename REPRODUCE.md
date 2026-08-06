@@ -1,7 +1,7 @@
 # RibAssist 3D: Reproducibility
 
-This document is the end-to-end path from **licensed third-party data** to the **sealed headline result**.
-The repository ships all scripts, published case-id splits, and headline sealed
+This document is the end-to-end path from **licensed third-party data** to the **sealed headline result**
+and the **Streamlit demo**. The repository ships all scripts, published case-id splits, and headline sealed
 JSONs. It does **not** ship RibFrac/RibSeg volumes, derived `.npz` tensors, or model checkpoints. Obtain
 those under their licenses ([DATA_SETUP.md](DATA_SETUP.md)) and run the steps below.
 
@@ -29,7 +29,7 @@ false-3D/case, case-bootstrap 95% CI 0.69%-4.48%. Everything below reproduces th
 
 | In git | You prepare locally |
 |---|---|
-| All `scripts/` for retrain + sealed eval | RibFrac CT + labels, RibSeg seg/cl |
+| All `scripts/` for retrain + sealed eval + demo (`app.py`, `demo_app/`) | RibFrac CT + labels, RibSeg seg/cl |
 | `frozen_split.json`, `geometry_split.json`, `split_manifest.json` | `outputs/det_out_v2/*.npz`, checkpoints |
 | `outputs/sealed/*.json` (headline sealed results) | Rib atlas, addressing weights, sweep dirs |
 
@@ -250,13 +250,23 @@ python scripts/build_sealed_det_npz.py \
     --out outputs/det_out_v2/det_test.npz
 ```
 
-## 12. Figures
+## 12. Figures and demo
 
 ```bash
 python scripts/make_main_results_figure.py \
     --sealed-dir outputs/sealed --out figures/main_results.png
 
 python scripts/make_schematic_figures.py
+
+pip install -r requirements-demo.txt
+python scripts/validate_local_artifacts.py --demo --strict
+streamlit run app.py
+```
+
+Smoke test (no UI):
+
+```bash
+bash scripts/smoke_demo.sh
 ```
 
 ## 13. Optional: learned pair-scorer (2×2 attribution)

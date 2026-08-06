@@ -60,11 +60,19 @@ The current evidence supports RibAssist 3D as a workflow proof of concept for fr
 
 ## Clinician-Review Demo
 
-The project includes a clinician-review interface used to demonstrate the assistive workflow described in the paper.
-The demo source and trained checkpoints are not distributed in this repository.
-Screenshots and workflow documentation are provided to illustrate the interface and the system's model-localized, candidate, and rib-level-only review states.
+The repository includes a Streamlit clinician-review app (`app.py`, `demo_app/`) that demonstrates the assistive workflow described in the paper. It runs the trained models on your local copies of the RibFrac/RibSeg data and checkpoints documented in [`DATA_SETUP.md`](DATA_SETUP.md); those artifacts are **not** committed to git.
 
-![Clinician-review interface (illustration)](figures/ribassist_demo.gif)
+After local artifacts are in place:
+
+```bash
+pip install -r requirements-demo.txt
+python scripts/validate_local_artifacts.py --demo --strict
+streamlit run app.py
+```
+
+The workflow covers case overview with interactive 3D rib anatomy, per-finding review with AP, lateral, and focused 3D evidence, and case summary with reviewer decisions. A detection is **never** removed because 3D correspondence abstains; it is retained for manual review.
+
+![Clinician-review interface](figures/ribassist_demo.gif)
 
 ![Pipeline architecture](figures/fig_architecture.svg)
 
@@ -72,6 +80,8 @@ Screenshots and workflow documentation are provided to illustrate the interface 
 
 ```
 RibAssist-3D/
+├── app.py                        # Streamlit clinician-review demo (entry point)
+├── demo_app/                     # demo package (viewers, 3D scene, pipeline, UI)
 ├── scripts/                      # pipeline, evaluation, and figure scripts (see below)
 ├── figures/                      # architecture / bottleneck / results / attribution figures
 ├── tests/                        # unit tests
@@ -86,18 +96,20 @@ so the main-results figure regenerates from a fresh clone without any download.
 `run_ribassist.py` (detection + addressing inference); `eval_biplanar_geometry*.py` (Stages A-C),
 `eval_correspondence_D0/D1/D2*.py` (candidate graph, deterministic and learned correspondence),
 `eval_lateral_L0*/L01*.py` (lateral diagnosis and calibration); `build_sealed_det_npz.py` and
-`run_sealed_stage{1,2}*.sh` (sealed evaluation); `make_main_results_figure.py`, `make_schematic_figures.py`.
+`run_sealed_stage{1,2}*.sh` (sealed evaluation); `make_main_results_figure.py`, `make_schematic_figures.py`,
+`make_demo_figures.py`.
 
 ## Quickstart
 
 Requires Python 3.10+, PyTorch (Apple MPS or CUDA for training; CPU for evaluation), NumPy, SciPy, nibabel,
-scikit-learn, and matplotlib.
+scikit-learn, and matplotlib. The demo additionally needs `requirements-demo.txt` (Streamlit, Plotly).
 
 The datasets and model checkpoints are prepared separately and are **not** committed (they exceed Git limits and
 include licensed derived data). The headline sealed-evaluation result JSONs **are** included under
 `outputs/sealed/`, so the main-results figure regenerates directly from the repository with no download. To obtain
 the datasets and reproduce the full pipeline, follow [`DATA_SETUP.md`](DATA_SETUP.md) (licensed data) and
-[`REPRODUCE.md`](REPRODUCE.md) (end-to-end steps, hashes, and the sealed pass).
+[`REPRODUCE.md`](REPRODUCE.md) (end-to-end steps, hashes, and the sealed pass). With local artifacts in place,
+launch the demo with `streamlit run app.py`.
 
 ## Method (one paragraph)
 

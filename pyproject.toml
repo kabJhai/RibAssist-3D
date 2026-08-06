@@ -6,6 +6,5 @@ requires-python = ">=3.10"
 readme = "README.md"
 license = "Apache-2.0"
 
-[tool.pytest.ini_options]
-testpaths = ["tests"]
-python_files = ["test_validate_local_artifacts.py"]
+[tool.setuptools.packages.find]
+include = ["demo_app*"]

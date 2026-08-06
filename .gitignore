@@ -3,8 +3,9 @@
 # TRACK (intended for release):
 #   scripts/ (full retrain + sealed eval; see exclusions below)
 #   LICENSE, LICENSE-DOCS, MODEL_TERMS.md, DISCLAIMER.md, README.md, NOTICE
-#   requirements.txt, pyproject.toml
-#   figures/ (paper SVGs, main_results.png, ribassist_demo.gif interface screenshot)
+#   requirements.txt, requirements-demo.txt, pyproject.toml
+#   app.py, demo_app/ (Streamlit clinician-review demo; checkpoints local-only)
+#   figures/ (paper SVGs, main_results.png, ribassist_demo.gif)
 #   frozen_split.json, split_manifest.json
 #   outputs/sealed/*.json (headline sealed-eval results)
 #
@@ -54,8 +55,9 @@ build/
 *.ipynb
 .ipynb_checkpoints/
 
-# Streamlit (local demo only)
-.streamlit/
+# Streamlit
+.streamlit/*
+!.streamlit/config.toml
 
 # Node (scripts/generate_deck.js)
 node_modules/
@@ -139,23 +141,6 @@ scripts/reeval_detector.py
 scripts/overlay_predictions.py
 scripts/capture_demo_screenshots.py
 scripts/generate_deck.js
-
-# --- Clinician-review demo (local only; checkpoints not distributed) ---
-app.py
-demo_app/
-requirements-demo.txt
-scripts/smoke_demo.sh
-scripts/make_demo_figures.py
-tests/test_anatomy_3d.py
-tests/test_anatomy_scene.py
-tests/test_clinical_summary.py
-tests/test_correspondence_replay.py
-tests/test_demo_inference.py
-tests/test_finding_linker.py
-tests/test_finding_map.py
-tests/test_plotly_compat.py
-tests/test_projection_overlay.py
-tests/test_ui_workflow.py
 
 # --- Maintainer-only demo tooling (not part of public release) ---
 scripts/make_readme_demo_gif.py

@@ -9,6 +9,7 @@ to check that your copies match the expected fingerprints in split_manifest.json
 
 Examples:
   python scripts/validate_local_artifacts.py
+  python scripts/validate_local_artifacts.py --demo --strict
   python scripts/validate_local_artifacts.py --all --strict
 """
 from __future__ import annotations
@@ -110,9 +111,14 @@ def main() -> int:
         help=f"path to split manifest (default: {DEFAULT_MANIFEST.relative_to(ROOT)})",
     )
     parser.add_argument(
+        "--demo",
+        action="store_true",
+        help="also verify demo-stack local artifacts",
+    )
+    parser.add_argument(
         "--all",
         action="store_true",
-        help="verify sealed-eval + optional research artifacts",
+        help="verify demo + sealed-eval + optional research artifacts",
     )
     parser.add_argument(
         "--strict",
@@ -142,6 +148,11 @@ def main() -> int:
                 print(f"  FAIL: {err}")
 
     artifact_errors: list[str] = []
+    if args.demo or args.all:
+        print("Checking demo local artifacts...")
+        _, _, errs = check_artifacts(local.get("demo", {}), strict=args.strict)
+        artifact_errors.extend(errs)
+
     if args.all:
         print("Checking sealed-eval local artifacts...")
         _, _, errs = check_artifacts(local.get("sealed_eval", {}), strict=args.strict)
@@ -160,10 +171,10 @@ def main() -> int:
             print(f"  {err}", file=sys.stderr)
         return 1
 
-    if args.all:
+    if args.demo or args.all:
         print("\nValidation passed.")
     else:
-        print("\nSplit validation passed. Run with --all --strict after fetching local artifacts.")
+        print("\nSplit validation passed. Run with --demo after fetching local artifacts.")
     return 0
 
 
