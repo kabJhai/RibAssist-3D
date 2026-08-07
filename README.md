@@ -12,7 +12,6 @@ The project combines staged failure analysis, detector retraining, frozen-policy
 >
 > This is a directional research proof of concept, not a diagnostic or deployable clinical system.
 
-- **Paper:** [RibAssist 3D: Biplanar Rib-Fracture Detection, Addressing, and Selective 3D Localization from CT-Derived Projections](paper/RibAssist_3D.pdf)
 - **Demo video:** [YouTube](https://youtu.be/q-zNc-DKVEQ)
 - **ORCID:** [0009-0008-6740-3214](https://orcid.org/0009-0008-6740-3214)
 
@@ -98,13 +97,13 @@ RibAssist 3D is intended as a **secondary-review and anatomical-organization too
 
 **[Watch the workflow on YouTube](https://youtu.be/q-zNc-DKVEQ)** (screen recording; no checkpoints required to view).
 
-The repository includes a Streamlit clinician-review app (`app.py`, `demo_app/`) that demonstrates the same assistive workflow interactively. **No pretrained model checkpoints are distributed.** To run the app you must train the models locally (Sections 5-11 in [`REPRODUCE.md`](REPRODUCE.md)) and point it at **your** checkpoints and derived tensors under `outputs/`.
+The repository includes a Streamlit clinician-review app (`app.py`, `demo_app/`) that demonstrates the same assistive workflow interactively. **Checkpoints are not on GitHub.** Train locally ([`REPRODUCE.md`](REPRODUCE.md) Sections 5–11) and point the app at **your** artifacts under `outputs/`.
 
-The demo expects locally trained artifacts at the paths in `demo_app/config.py`, including:
+The demo expects artifacts at the paths in `demo_app/config.py`, including:
 
-- `outputs/detector_dev_scratch_c32_both_gated/` (champion detector; Section 6)
-- `outputs/addressing_model_ap_nopos/` (addressing model; Section 7)
-- `outputs/detector_L2_lateral_hnm/` (L2 lateral detector; Section 10)
+- `outputs/detector_dev_scratch_c32_both_gated/` (champion detector; Section 5)
+- `outputs/addressing_model_ap_nopos/` (addressing model; Section 6)
+- `outputs/detector_L2_lateral_hnm/` (L2 lateral detector; Section 9)
 - `outputs/det_out_v2/det_test.npz` and `outputs/sealed/L2_sealed_D0_pairs.npz` (Section 11)
 - RibFrac/RibSeg data under `data/` ([`DATA_SETUP.md`](DATA_SETUP.md))
 
@@ -153,7 +152,7 @@ include licensed derived data). The headline sealed-evaluation result JSONs **ar
 `outputs/sealed/`, so the main-results figure regenerates directly from the repository with no download. To obtain
 the datasets and reproduce the full pipeline, follow [`DATA_SETUP.md`](DATA_SETUP.md) (licensed data) and
 [`REPRODUCE.md`](REPRODUCE.md) (end-to-end steps, hashes, and the sealed pass). The Streamlit demo is **not**
-turnkey: train the models (Sections 5-11), then launch with `streamlit run app.py`.
+turnkey: train locally (Sections 5–11), then launch with `streamlit run app.py`.
 
 ## Method (one paragraph)
 
@@ -266,11 +265,17 @@ Datasets are third-party and governed by their own licenses and terms; they are 
 - [RibFrac dataset](https://ribfrac.grand-challenge.org/)
 - [RibSeg v2](https://github.com/M3DV/RibSeg)
 
+## Cross-links
+
+| Resource | Link |
+|----------|------|
+| **Source code (this repo)** | [`kabJhai/RibAssist-3D`](https://github.com/kabJhai/RibAssist-3D) |
+| **Demo video** | [YouTube](https://youtu.be/q-zNc-DKVEQ) |
+
 ## License
 
 - Original source code: [Apache License 2.0](LICENSE)
 - Original documentation and figures: [CC BY 4.0](LICENSE-DOCS)
-- Model checkpoints: not distributed; see [MODEL_TERMS.md](MODEL_TERMS.md)
 - Third-party datasets: governed by their original licenses and not redistributed
 
 ## Citation

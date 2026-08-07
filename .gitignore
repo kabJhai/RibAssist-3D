@@ -7,11 +7,11 @@
 #   app.py, demo_app/ (Streamlit clinician-review demo; checkpoints local-only)
 #   figures/ (paper SVGs, main_results.png, ribassist_demo.gif)
 #   frozen_split.json, split_manifest.json
-#   paper/RibAssist_3D.pdf
 #   outputs/sealed/*.json (headline sealed-eval results)
 #
 # IGNORE: licensed data, derived labels, checkpoints, generated outputs,
-# internal docs/decks, local env, and scratch artifacts.
+# internal docs/decks, local env, scratch artifacts, huggingface/ (Hub-only),
+# and paper/ (until arXiv publication).
 
 # --- Local / tooling ---
 .DS_Store
@@ -119,6 +119,11 @@ figures/*
 !DISCLAIMER.md
 !DATA_SETUP.md
 !REPRODUCE.md
+
+# --- Hugging Face Hub publish bundle (local staging only; never commit to GitHub) ---
+# Prepare locally, then upload the folder contents to kabilasoboka/RibAssist-3D on the Hub.
+# The Hub repo is a separate git repository — commit everything in this folder there.
+huggingface/
 /PROJECT_PLAN.md
 /RibAssist_report.md
 /RibAssist_findings_A_to_D2.md
@@ -132,9 +137,8 @@ deck_assets/
 *.avi
 *.mkv
 
-# --- paper/ (public PDF only; ignore decks, zips, demo videos, submission PDFs) ---
-paper/*
-!paper/RibAssist_3D.pdf
+# --- paper/ (local only until arXiv publication) ---
+paper/
 
 # --- Legacy / internal scripts (local only; not part of public release) ---
 # Pre-main-arc feasibility probes
