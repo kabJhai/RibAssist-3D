@@ -7,6 +7,7 @@
 #   app.py, demo_app/ (Streamlit clinician-review demo; checkpoints local-only)
 #   figures/ (paper SVGs, main_results.png, ribassist_demo.gif)
 #   frozen_split.json, split_manifest.json
+#   paper/RibAssist_3D.pdf
 #   outputs/sealed/*.json (headline sealed-eval results)
 #
 # IGNORE: licensed data, derived labels, checkpoints, generated outputs,
@@ -126,6 +127,14 @@ figures/*
 *.pptx
 /RibAssist_deck.pptx
 deck_assets/
+*.mp4
+*.mov
+*.avi
+*.mkv
+
+# --- paper/ (public PDF only; ignore decks, zips, demo videos, submission PDFs) ---
+paper/*
+!paper/RibAssist_3D.pdf
 
 # --- Legacy / internal scripts (local only; not part of public release) ---
 # Pre-main-arc feasibility probes

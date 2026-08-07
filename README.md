@@ -4,7 +4,7 @@
 
 RibAssist 3D is a research proof-of-concept review-assistance system for highlighting suspected rib fractures in AP and lateral CT-derived projections, assigning predicted side and rib level, and selectively localizing sufficiently confident findings on interactive 3D rib anatomy. When cross-view correspondence is uncertain, the system abstains from producing a 3D point while preserving the original detection and available anatomical addressing for human review.
 
-![RibAssist 3D in action — highlighted fractures, rib-level addressing, and selective 3D localization on interactive rib anatomy, with uncertain findings preserved for review](figures/ribassist_demo.gif)
+![RibAssist 3D clinician-review demo: highlighted fractures, rib-level addressing, and selective 3D localization on interactive rib anatomy, with uncertain findings preserved for review](figures/ribassist_demo.gif)
 
 The project combines staged failure analysis, detector retraining, frozen-policy evaluation, and reproducibility checks.
 
@@ -13,6 +13,7 @@ The project combines staged failure analysis, detector retraining, frozen-policy
 > This is a directional research proof of concept, not a diagnostic or deployable clinical system.
 
 - **Paper:** [RibAssist 3D: Biplanar Rib-Fracture Detection, Addressing, and Selective 3D Localization from CT-Derived Projections](paper/RibAssist_3D.pdf)
+- **Demo video:** [YouTube](https://youtu.be/q-zNc-DKVEQ)
 - **ORCID:** [0009-0008-6740-3214](https://orcid.org/0009-0008-6740-3214)
 
 
@@ -95,7 +96,9 @@ RibAssist 3D is intended as a **secondary-review and anatomical-organization too
 
 ## Clinician-Review Demo
 
-The repository includes a Streamlit clinician-review app (`app.py`, `demo_app/`) that demonstrates the assistive workflow described in the paper. **No pretrained model checkpoints are distributed.** To run the demo you must train the models locally (Sections 5-11 in [`REPRODUCE.md`](REPRODUCE.md)) and point the app at **your** checkpoints and derived tensors under `outputs/`.
+**[Watch the workflow on YouTube](https://youtu.be/q-zNc-DKVEQ)** (screen recording; no checkpoints required to view).
+
+The repository includes a Streamlit clinician-review app (`app.py`, `demo_app/`) that demonstrates the same assistive workflow interactively. **No pretrained model checkpoints are distributed.** To run the app you must train the models locally (Sections 5-11 in [`REPRODUCE.md`](REPRODUCE.md)) and point it at **your** checkpoints and derived tensors under `outputs/`.
 
 The demo expects locally trained artifacts at the paths in `demo_app/config.py`, including:
 
