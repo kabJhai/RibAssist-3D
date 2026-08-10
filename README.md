@@ -275,12 +275,13 @@ If you use RibAssist 3D, please cite the paper, this repository, and the RibFrac
 
 ```bibtex
 @article{soboka2026ribassist,
-  title   = {RibAssist 3D: Biplanar Rib-Fracture Detection, Addressing, and Selective 3D Localization from CT-Derived Projections},
-  author  = {Soboka, Kabila Haile},
-  year    = {2026},
-  eprint  = {2608.06914},
+  title         = {RibAssist 3D: Biplanar Rib-Fracture Detection, Addressing, and Selective 3D Localization from CT-Derived Projections},
+  author        = {Soboka, Kabila Haile},
+  year          = {2026},
+  eprint        = {2608.06914},
   archivePrefix = {arXiv},
   primaryClass  = {cs.CV},
-  url     = {https://arxiv.org/abs/2608.06914}
+  doi           = {10.48550/arXiv.2608.06914},
+  url           = {https://arxiv.org/abs/2608.06914}
 }
 ```
