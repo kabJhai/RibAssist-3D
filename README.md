@@ -1,20 +1,14 @@
-# RibAssist 3D
+# RibAssist 3D: Biplanar Rib-Fracture Detection, Addressing, and Selective 3D Localization from CT-Derived Projections [arXiv 2026]
 
-**Biplanar rib-fracture detection, anatomical addressing, and selective 3D localization.**
+[Kabila Haile Soboka](https://orcid.org/0009-0008-6740-3214)
 
-RibAssist 3D is a research proof-of-concept review-assistance system for highlighting suspected rib fractures in AP and lateral CT-derived projections, assigning predicted side and rib level, and selectively localizing sufficiently confident findings on interactive 3D rib anatomy. When cross-view correspondence is uncertain, the system abstains from producing a 3D point while preserving the original detection and available anatomical addressing for human review.
+[![arXiv](https://img.shields.io/badge/arXiv-Paper-b31b1b)](https://arxiv.org/abs/2608.06914)
+[![Hugging Face](https://img.shields.io/badge/🤗%20Hugging%20Face-Checkpoints-yellow)](https://huggingface.co/kabilasoboka/RibAssist-3D)
+[![Demo](https://img.shields.io/badge/YouTube-Demo-red)](https://youtu.be/q-zNc-DKVEQ)
+
+**Abstract:** *Rib fractures are common, clinically significant, and time-consuming to localize on computed tomography (CT). We ask whether fractures detected in two orthogonal projections (anteroposterior, AP, and lateral) can be paired across views and triangulated into reliable 3D fracture points at a controlled rate of false 3D outputs. We answer this with a staged diagnostic study. Biplanar geometry is exact: detector-predicted centers reconstruct to median 4.0 mm 3D error when correspondence is correct. On the sealed cohort, dual-view availability reaches 61.1% and the candidate graph contains a correct pair for 58.4% of fractures. The binding limitation is not geometry or localization but confidence-limited cross-view correspondence. Lateral-detector retraining lifts dual-view availability (0.52 to 0.76 in development) and moves the frontier from 0% to 2.44% recall at 10 mm. When the policy commits a correct pair, the emitted point is geometrically accurate (sealed median 1.49 mm, rib-exact 93%). A pre-specified pass on the untouched 55-case cohort promotes 15 of 601 fractures to correct 3D localizations at 0.436 false 3D points per case, yielding 2.50% end-to-end commitment yield. The contribution is validated biplanar reconstruction geometry with high conditional localization fidelity, a staged identification of cross-view correspondence confidence as the effective bottleneck, and a selective assistive workflow that preserves uncertain findings rather than a standalone automatic reconstructor.*
 
 ![RibAssist 3D clinician-review demo: highlighted fractures, rib-level addressing, and selective 3D localization on interactive rib anatomy, with uncertain findings preserved for review](figures/ribassist_demo.gif)
-
-The project combines staged failure analysis, detector retraining, frozen-policy evaluation, and reproducibility checks.
-
-> **Key results.** The biplanar geometry is exact, and given correct correspondence the localization is accurate (median **4.0 mm**, **88%** within 10 mm, **93.6%** rib-exact). On the sealed 55-case cohort a large share of fractures is recoverable (**61.1%** dual-view availability, **58.4%** candidate ceiling), and when the frozen policy commits a cross-view pair the 3D point is geometrically accurate (median **1.49 mm**, **93%** rib-exact). The evaluated reconstruction bottleneck is confidence-limited cross-view correspondence rather than geometry or conditional localization; rib addressing is a supporting workflow component that was not independently evaluated in this study. The terminal **end-to-end commitment yield is 2.50%** (15 of 601 fractures at 0.436 false 3D points per case; 95% CI 0.69%–4.48%), versus zero for the original detector under the same budget.
->
-> This is a directional research proof of concept, not a diagnostic or deployable clinical system.
-
-- **Demo video:** [YouTube](https://youtu.be/q-zNc-DKVEQ)
-- **ORCID:** [0009-0008-6740-3214](https://orcid.org/0009-0008-6740-3214)
-
 
 ## Validated strengths
 
@@ -97,7 +91,7 @@ RibAssist 3D is intended as a **secondary-review and anatomical-organization too
 
 **[Watch the workflow on YouTube](https://youtu.be/q-zNc-DKVEQ)** (screen recording; no checkpoints required to view).
 
-The repository includes a Streamlit clinician-review app (`app.py`, `demo_app/`) that demonstrates the same assistive workflow interactively. **Checkpoints are not on GitHub.** Train locally ([`REPRODUCE.md`](REPRODUCE.md) Sections 5–11) and point the app at **your** artifacts under `outputs/`.
+The repository includes a Streamlit clinician-review app (`app.py`, `demo_app/`) that demonstrates the same assistive workflow interactively. **Checkpoints are not on GitHub.** Download CC BY-NC weights from [`kabilasoboka/RibAssist-3D`](https://huggingface.co/kabilasoboka/RibAssist-3D) **or** train locally ([`REPRODUCE.md`](REPRODUCE.md) Sections 5–11) and point the app at **your** artifacts under `outputs/`.
 
 The demo expects artifacts at the paths in `demo_app/config.py`, including:
 
@@ -152,7 +146,7 @@ include licensed derived data). The headline sealed-evaluation result JSONs **ar
 `outputs/sealed/`, so the main-results figure regenerates directly from the repository with no download. To obtain
 the datasets and reproduce the full pipeline, follow [`DATA_SETUP.md`](DATA_SETUP.md) (licensed data) and
 [`REPRODUCE.md`](REPRODUCE.md) (end-to-end steps, hashes, and the sealed pass). The Streamlit demo is **not**
-turnkey: train locally (Sections 5–11), then launch with `streamlit run app.py`.
+turnkey: obtain checkpoints from [Hugging Face](https://huggingface.co/kabilasoboka/RibAssist-3D) or local training (Sections 5–11), then launch with `streamlit run app.py`.
 
 ## Method (one paragraph)
 
@@ -241,11 +235,7 @@ A compact map of the techniques this project exercises end to end:
 - Case-level cross-validation and sealed evaluation
 - Artifact provenance and reproducibility
 
-## Status, limitations, and disclaimer
-
-RibAssist 3D is a **research proof of concept**, not a medical device or clinical tool. It currently supports
-fracture-region highlighting, rib-level addressing, and selective 3D localization for high-confidence cross-view
-matches.
+## Limitations
 
 The sealed result remains limited: the end-to-end commitment yield was 2.5%, and only 6 of 55 cases produced at
 least one correct reconstruction. The cohort was small, contained no validated negative-scan safety evaluation, and
@@ -254,9 +244,7 @@ used CT-derived simulated orthographic projections rather than independently acq
 Within the tested detector and local-correspondence methods, lateral-detector availability and confidence were the
 effective lever. The next research directions are stronger lateral detection, global anatomical correspondence
 using rib identity and ordering, evaluation on negative cases, and validation on more realistic or independently
-acquired biplanar inputs.
-
-**Do not use RibAssist 3D for diagnosis, treatment, or patient care.**
+acquired biplanar inputs. See [DISCLAIMER.md](DISCLAIMER.md).
 
 ## Data
 
@@ -270,24 +258,29 @@ Datasets are third-party and governed by their own licenses and terms; they are 
 | Resource | Link |
 |----------|------|
 | **Source code (this repo)** | [`kabJhai/RibAssist-3D`](https://github.com/kabJhai/RibAssist-3D) |
+| **Paper** | [arXiv:2608.06914](https://arxiv.org/abs/2608.06914) |
+| **Model checkpoints** | [`kabilasoboka/RibAssist-3D`](https://huggingface.co/kabilasoboka/RibAssist-3D) on Hugging Face |
 | **Demo video** | [YouTube](https://youtu.be/q-zNc-DKVEQ) |
 
 ## License
 
 - Original source code: [Apache License 2.0](LICENSE)
 - Original documentation and figures: [CC BY 4.0](LICENSE-DOCS)
+- Model checkpoints (CC BY-NC 4.0): [`kabilasoboka/RibAssist-3D`](https://huggingface.co/kabilasoboka/RibAssist-3D) on Hugging Face; see [MODEL_TERMS.md](MODEL_TERMS.md)
 - Third-party datasets: governed by their original licenses and not redistributed
 
 ## Citation
 
-If you use RibAssist 3D, please cite this repository together with the RibFrac and RibSeg datasets:
+If you use RibAssist 3D, please cite the paper, this repository, and the RibFrac and RibSeg datasets:
 
 ```bibtex
-@misc{soboka2026ribassist,
-  title        = {RibAssist 3D: Biplanar Rib-Fracture Detection, Addressing, and Selective 3D Localization from CT-Derived Projections},
-  author       = {Soboka, Kabila Haile},
-  year         = {2026},
-  howpublished = {Research proof of concept},
-  url          = {https://github.com/kabJhai/RibAssist-3D}
+@article{soboka2026ribassist,
+  title   = {RibAssist 3D: Biplanar Rib-Fracture Detection, Addressing, and Selective 3D Localization from CT-Derived Projections},
+  author  = {Soboka, Kabila Haile},
+  year    = {2026},
+  eprint  = {2608.06914},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CV},
+  url     = {https://arxiv.org/abs/2608.06914}
 }
 ```

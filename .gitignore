@@ -11,7 +11,7 @@
 #
 # IGNORE: licensed data, derived labels, checkpoints, generated outputs,
 # internal docs/decks, local env, scratch artifacts, huggingface/ (Hub-only),
-# and paper/ (until arXiv publication).
+# scripts/huggingface_publish/ (maintainer upload helpers), and paper/ (until arXiv).
 
 # --- Local / tooling ---
 .DS_Store
@@ -124,6 +124,9 @@ figures/*
 # Prepare locally, then upload the folder contents to kabilasoboka/RibAssist-3D on the Hub.
 # The Hub repo is a separate git repository — commit everything in this folder there.
 huggingface/
+
+# --- Maintainer Hub upload helpers (local only; not on GitHub or Hugging Face) ---
+scripts/huggingface_publish/
 /PROJECT_PLAN.md
 /RibAssist_report.md
 /RibAssist_findings_A_to_D2.md
